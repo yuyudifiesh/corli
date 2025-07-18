@@ -5,4 +5,4 @@
 世界观正在大改……
 
 ## 故事集
-`2025.07.18` 《岁华灯》故事集上线！[详情](./sidestory/hua/suihuadeng)
+`2025.07.18` ~ `--` 【更新中】《岁华灯》故事集[详情](./sidestory/hua/suihuadeng)
