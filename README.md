@@ -1,6 +1,5 @@
 # corli
 一个架空世界观和剧情😃
-Copyright © 2025 Yuyudifiesh
 
 ## 世界观描述
 世界观正在大改……
@@ -19,3 +18,6 @@ Copyright © 2025 Yuyudifiesh
 **`2025.07.26`** [《青阳稔》故事集](./sidestory/hua/qingyangren)
 
 **`2025.07.18`** [《岁华灯》故事集](./sidestory/hua/suihuadeng)
+
+
+<div align="center">Copyright © 2025 Yuyudifiesh</center>
