@@ -20,4 +20,6 @@
 **`2025.07.18`** [《岁华灯》故事集](./sidestory/hua/suihuadeng)
 
 
-<div align="center">Copyright © 2025 Yuyudifiesh</center>
+<div align="center">
+  Copyright © 2025 Yuyudifiesh
+</div>
