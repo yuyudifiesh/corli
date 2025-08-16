@@ -26,9 +26,9 @@
 
 <hr>
 
-**`2025.07.26`** [《青阳稔》故事集](./sidestory/hua/qingyangren)
+**`2025.07.26`** [《青阳稔》故事集（调查中）](./sidestory/hua/qingyangren)
 
-**`2025.07.18`** [《岁华灯》故事集](./sidestory/hua/suihuadeng)
+**`2025.07.18`** [《岁华灯》故事集（已完结）](./sidestory/hua/suihuadeng)
 
 
 <div align="center">
