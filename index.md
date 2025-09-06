@@ -3,32 +3,14 @@
 layout: home
 
 hero:
-  name: "铆志录"
-  text: ""
-  tagline:
+  name: "Corli"
+  text: "一个架空的世界观"
   actions:
     - theme: brand
-      text: 世界观与设定
-      link: /docs/indexp/worldset
+      text: 开始阅读
+      link: /docs/novel/f/1
     - theme: alt
-      text: 制作组
-      link: /docs/indexp/about
-
-features:
-  - title: 系统提示
-    icon: ⚠️
-    details: <strong>您正在阅览「BETA」版本</strong><br>BetaVersion：1.0.0<br>Version：null
-  - title: Intro
-    details: 天理不可知，字缚不可脱
-    link: /docs/indexp/intro
-    linkText: 探索
-  - title: 《岁司纪事》
-    details: 
-    link: /docs/sui_story/index
-    linkText: 查阅
-  - title: 《万世牒》
-    details:
-    link: /docs/ws/index
-    linkText: 探索
+      text: 设定
+      link: /docs/setting
 ---
 
