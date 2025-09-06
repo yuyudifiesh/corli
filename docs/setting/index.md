@@ -16,20 +16,20 @@ prev: false
 
 - <Badge type="tip" text="0089" /> 冰川时期过去，新的政权和国家建立。
 - <Badge type="tip" text="0090" /> 灰质病开始流行。
-- <Badge type="tip" text="0091" /> 【灰烬时代】
-- <Badge type="tip" text="0130" /> 【黎明前夜】<打火石>
-- <Badge type="tip" text="0231" /> 【冲破黑暗】
-- <Badge type="tip" text="0259" /> 【步行千里】<岁华灯> <苍山负雪>
-- <Badge type="tip" text="0321" /> 【身当以生】<岁华灯>
-- <Badge type="tip" text="0430" /> 【残阳如血】
-- <Badge type="tip" text="0522" /> 【残阳如血】<青阳稔>
-- <Badge type="tip" text="0524" /> 【残阳如血】<青阳稔>
-- <Badge type="tip" text="0525" /> 【恨火四起】<在生与死的辽阔草原上死去>
-- <Badge type="tip" text="0560" /> 【欲望丛生】<眺望死亡的裂谷> <狂欢>
-- <Badge type="tip" text="0590" /> 【永续灯塔】<石林>
-- <Badge type="tip" text="0630" /> 【再见再见】<石林> <向恨火燎原深处走去>
-- <Badge type="tip" text="0700" /> 【希冀荧荧】
-- <Badge type="tip" text="0715" /> 【焰火燎原】<回忆，神与佛与世人>
+- <Badge type="tip" text="0091" /> [【灰烬时代】](/docs/novel/f/1)
+- <Badge type="tip" text="0130" /> [【黎明前夜】](/docs/novel/f/2) <打火石>
+- <Badge type="tip" text="0231" /> [【冲破黑暗】](/docs/novel/f/3)
+- <Badge type="tip" text="0259" /> [【步行千里】](/docs/novel/f/4) [<岁华灯>](/docs/novel/sidestory/hua/suihuadeng) <苍山负雪>
+- <Badge type="tip" text="0321" /> [【身当以生】](/docs/novel/f/5) [<岁华灯>](/docs/novel/sidestory/hua/suihuadeng)
+- <Badge type="tip" text="0430" /> [【残阳如血】](/docs/novel/f/6)
+- <Badge type="tip" text="0522" /> [【残阳如血】](/docs/novel/f/6) [<青阳稔>](/docs/novel/sidestory/hua/qingyangren.md)
+- <Badge type="tip" text="0524" /> [【残阳如血】](/docs/novel/f/6) [<青阳稔>](/docs/novel/sidestory/hua/qingyangren.md)
+- <Badge type="tip" text="0525" /> [【恨火四起】](/docs/novel/f/7) <在生与死的辽阔草原上死去>
+- <Badge type="tip" text="0560" /> [【欲望丛生】](/docs/novel/f/8) <眺望死亡的裂谷> <狂欢>
+- <Badge type="tip" text="0590" /> [【永续灯塔】](/docs/novel/f/9) <石林>
+- <Badge type="tip" text="0630" /> [【再见再见】](/docs/novel/f/10) <石林> <向恨火燎原深处走去>
+- <Badge type="tip" text="0700" /> [【希冀荧荧】](/docs/novel/f/11)
+- <Badge type="tip" text="0715" /> [【焰火燎原】](/docs/novel/f/12) <回忆，神与佛与世人>
 - <Badge type="tip" text="0744" /> ......
 
 ## 设定名词

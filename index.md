@@ -7,10 +7,13 @@ hero:
   text: "一个架空的世界观"
   actions:
     - theme: brand
-      text: 开始阅读
+      text: 世界观 & 设定
+      link: /docs/setting
+    - theme: alt
+      text: 阅读主线
       link: /docs/novel/f/1
     - theme: alt
-      text: 设定
-      link: /docs/setting
+      text: 阅读支线
+      link: /docs/novel/sidestory/hua/suihuadeng
 ---
 
