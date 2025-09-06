@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/Corli/',
   title: "Corli",
   description: "一个架空的世界观",
   themeConfig: {
