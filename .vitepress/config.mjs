@@ -79,6 +79,12 @@ export default defineConfig({
           { text: '青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
         ]
       },
+      {
+        text: '联动剧情',
+        items: [
+          { text: '海蚀时代', link: '/docs/novel/haishi' },
+        ]
+      },
     ],
 
     socialLinks: [

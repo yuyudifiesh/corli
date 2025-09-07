@@ -15,5 +15,8 @@ hero:
     - theme: alt
       text: 阅读支线
       link: /docs/novel/sidestory/hua/suihuadeng
+    - theme: alt
+      text: 碎片数据
+      link: /docs/poem
 ---
 
