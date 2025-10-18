@@ -10,7 +10,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '关于', link: '/about' },
-      { text: '设定', link: '/docs/setting/index' }
+      { text: '设定', link: '/docs/setting/set' }
     ],
 
     // 汉化
@@ -52,7 +52,8 @@ export default defineConfig({
       {
         text: '设定',
         items: [
-          { text: '设定', link: '/docs/setting/index' }
+          { text: '设定', link: '/docs/setting/set' },
+          { text: '人物设定', link: '/docs/setting/people' }
         ]
       },
       {
@@ -70,6 +71,8 @@ export default defineConfig({
           { text: '再见再见', link: '/docs/novel/f/10' },
           { text: '希冀荧荧', link: '/docs/novel/f/11' },
           { text: '焰火燎原', link: '/docs/novel/f/12' },
+          { text: '乌合之众', link: '/docs/novel/f/13' },
+          { text: '呼吸洄流', link: '/docs/novel/f/14' },
         ]
       },
       {
@@ -77,6 +80,12 @@ export default defineConfig({
         items: [
           { text: '岁华灯', link: '/docs/novel/sidestory/hua/suihuadeng' },
           { text: '青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
+        ]
+      },
+      {
+        text: '故事集',
+        items: [
+          { text: '乘船归去', link: '/docs/novel/story/chengchuanguiqu' },
         ]
       },
       {
