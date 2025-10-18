@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 世界观 & 设定
-      link: /docs/setting
+      link: /docs/setting/set
     - theme: alt
       text: 阅读主线
       link: /docs/novel/f/1
