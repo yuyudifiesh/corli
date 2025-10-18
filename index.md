@@ -8,6 +8,9 @@ hero:
     - theme: brand
       text: 世界观 & 设定
       link: /docs/setting/set
+    - theme: brand
+      text: 更新预告
+      link: /update
     - theme: alt
       text: 阅读主线
       link: /docs/novel/f/1
