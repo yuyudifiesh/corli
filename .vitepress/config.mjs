@@ -109,7 +109,7 @@ export default defineConfig({
 
     footer: {
       message: '架空世界观和设定，仅供娱乐使用，请勿带入现实。',
-      copyright: 'Copyright © 2025 yuyudifiesh'
+      copyright: 'Copyright © 2026 yuyudifiesh'
     }
   }
 })
