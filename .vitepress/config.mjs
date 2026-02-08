@@ -94,6 +94,13 @@ export default defineConfig({
           { text: '海蚀时代', link: '/docs/novel/haishi' },
         ]
       },
+      {
+        text: '国家叙事',
+        items: [
+          { text: '华川《时代》', link: '/docs/novel/countryss/t/huachuan1' },
+          { text: '菲林南利《乌托邦》', link: '/docs/novel/countryss/t/flnl1' },
+        ]
+      },
     ],
 
     socialLinks: [

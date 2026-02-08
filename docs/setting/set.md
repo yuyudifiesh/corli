@@ -14,26 +14,28 @@ prev: false
 将使用【】表示主线章节，使用<>表示支线章节，用（）表示故事集。
 :::
 
-- <Badge type="tip" text="0089" /> 冰川时期过去，新的政权和国家建立。
-- <Badge type="tip" text="0090" /> 灰质病爆发，冲突源形成，政体兴衰趋于稳定。构型正常。
-- <Badge type="tip" text="0091" /> [【灰烬时代】](/docs/novel/f/1)
-- <Badge type="tip" text="0100" /> [【黎明前夜】](/docs/novel/f/2) <打火石>
-- <Badge type="tip" text="0120" /> [【冲破黑暗】](/docs/novel/f/3)
-- <Badge type="tip" text="0140" /> [【步行千里】](/docs/novel/f/4) [<岁华灯>](/docs/novel/sidestory/hua/suihuadeng) <苍山负雪>
-- <Badge type="tip" text="0151" /> [【身当以生】](/docs/novel/f/5) [<岁华灯>](/docs/novel/sidestory/hua/suihuadeng)
-- <Badge type="tip" text="0183" /> [【残阳如血】](/docs/novel/f/6)
-- <Badge type="tip" text="0185" /> [【残阳如血】](/docs/novel/f/6) [<青阳稔>](/docs/novel/sidestory/hua/qingyangren.md)
-- <Badge type="tip" text="0186" /> [【残阳如血】](/docs/novel/f/6) [<青阳稔>](/docs/novel/sidestory/hua/qingyangren.md) <乘船归去>
-- <Badge type="tip" text="0200" /> [【恨火四起】](/docs/novel/f/7) <在生与死的辽阔草原上死去>
-- <Badge type="tip" text="0230" /> [【欲望丛生】](/docs/novel/f/8) <眺望死亡的裂谷>
-- <Badge type="tip" text="0235" /> [【永续灯塔】](/docs/novel/f/9) <石林>
-- <Badge type="tip" text="0237" /> [【再见再见】](/docs/novel/f/10) <石林>
-- <Badge type="tip" text="0243" />
-- <Badge type="tip" text="0245" /> [【希冀荧荧】](/docs/novel/f/11)
-- <Badge type="tip" text="0255" /> [【焰火燎原】](/docs/novel/f/12) <回忆，神与佛与世人>
-- <Badge type="tip" text="0260" /> [【乌合之众】](/docs/novel/f/13)
-- <Badge type="tip" text="0262" /> [【呼吸洄流】](/docs/novel/f/14)
-- <Badge type="tip" text="0263" /> ......
+| 年份 | 剧情 |
+|:---:|:---|
+| 0089 | 冰川时期过去，新的政权和国家建立。 |
+| 0090 | 灰质病爆发，冲突源形成，政体兴衰趋于稳定。构型正常。 |
+| 0091 | [【灰烬时代】](/docs/novel/f/1) |
+| 0100 | [【黎明前夜】](/docs/novel/f/2) <打火石> |
+| 0120 | [【冲破黑暗】](/docs/novel/f/3) |
+| 0140 | [【步行千里】](/docs/novel/f/4) [<岁华灯>](/docs/novel/sidestory/hua/suihuadeng) <苍山负雪> |
+| 0151 | [【身当以生】](/docs/novel/f/5) [<岁华灯>](/docs/novel/sidestory/hua/suihuadeng) |
+| 0183 | [【残阳如血】](/docs/novel/f/6) |
+| 0185 | [【残阳如血】](/docs/novel/f/6) [<青阳稔>](/docs/novel/sidestory/hua/qingyangren.md) |
+| 0186 | [【残阳如血】](/docs/novel/f/6) [<青阳稔>](/docs/novel/sidestory/hua/qingyangren.md) <乘船归去> |
+| 0200 | [【恨火四起】](/docs/novel/f/7) <在生与死的辽阔草原上死去> |
+| 0230 | [【欲望丛生】](/docs/novel/f/8) <眺望死亡的裂谷> |
+| 0235 | [【永续灯塔】](/docs/novel/f/9) <石林> |
+| 0237 | [【再见再见】](/docs/novel/f/10) <石林> |
+| 0243 |  |
+| 0245 | [【希冀荧荧】](/docs/novel/f/11) |
+| 0255 | [【焰火燎原】](/docs/novel/f/12) <回忆，神与佛与世人> |
+| 0260 | [【乌合之众】](/docs/novel/f/13) |
+| 0262 | [【呼吸洄流】](/docs/novel/f/14) |
+| 0263 | ...... |
 
 ## 设定名词
 ::: details 目录
@@ -123,19 +125,19 @@ prev: false
 > 独立政权政体和政体组织由群体或个人发起，有政治野心的个人或者受到压迫的群体通过此举来迫使国家政权让步。
 
 ### 国家
-::: details 华川
+::: details 华川（待整合）
 :::
 
-::: details 奥斯维托
+::: details 奥斯维托（待整合）
 :::
 
-::: details 里格
+::: details 里格（待整合）
 :::
 
-::: details 黑尔格
+::: details 黑尔格（待整合）
 :::
 
-::: details 谷
+::: details 谷（待整合）
 :::
 
 ::: details 波利利尔
@@ -146,11 +148,13 @@ prev: false
 从[里格]独立的国家，最初由对[里格]的反抗军组织建立。
 :::
 
-::: details 漓略塔
+::: details 漓略塔（待整合）
 :::
 
 ::: details 菲林南利
 依靠雄厚的资本和几乎处于垄断地位的 “普适性难民抑制药物” 方案，菲林南利在检二平原上建立了半乌托邦的国家，几乎达到极致的储备金使该国家屹立百年。高度发达的抑制药物技术使菲林南利建立起完全免费的医疗体系。政治上，作为唯一一个适用 “离岸避税” 法案的国家，菲林南利选择政治中立，不主动参与和发动战争。
+
+[国家叙事](/docs/novel/countryss/t/flnl1.md)
 :::
 
 ::: details 塞尔维门
@@ -158,9 +162,9 @@ prev: false
 :::
 
 ### 政体
-::: details 里格
+::: details 里格（待整合）
 :::
 
 ### 组织
-::: details 欧德辐
+::: details 欧德辐（待整合）
 :::
