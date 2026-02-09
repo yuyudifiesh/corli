@@ -1,5 +1,4 @@
 ---
-next: false
 prev: false
 ---
 

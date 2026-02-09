@@ -80,18 +80,21 @@ export default defineConfig({
         items: [
           { text: '岁华灯', link: '/docs/novel/sidestory/hua/suihuadeng' },
           { text: '青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
+          { text: '长圆时', link: '/docs/novel/sidestory/hua/changyuanshi' },
         ]
       },
       {
         text: '故事集',
         items: [
           { text: '乘船归去', link: '/docs/novel/story/chengchuanguiqu' },
+          { text: '侠自平生', link: '/docs/novel/story/xiazipingsheng' },
         ]
       },
       {
         text: '联动剧情',
         items: [
           { text: '海蚀时代', link: '/docs/novel/haishi' },
+          { text: '旧梦泡影', link: '/docs/novel/jiumengpaoying' },
         ]
       },
       {
