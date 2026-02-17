@@ -9,7 +9,7 @@ hero:
       text: 世界观 & 设定
       link: /docs/setting/set
     - theme: brand
-      text: 更新预告
+      text: 更新
       link: /update
     - theme: alt
       text: 阅读主线
