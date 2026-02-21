@@ -1,3 +1,8 @@
+---
+next: false
+prev: false
+---
+
 # 关于 Corli
 一个架空背景的世界观和相关小说内容。
 

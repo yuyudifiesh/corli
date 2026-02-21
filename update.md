@@ -1,3 +1,8 @@
+---
+next: false
+prev: false
+---
+
 # 更新
 ::: info 使用说明
 本页面仅展示最新的更新和进行中的活动，不保留其他内容。
@@ -9,14 +14,14 @@
 1. [华川《时代》](./docs/novel/countryss/t/huachuan1)
 2. [菲林南利《乌托邦》](./docs/novel/countryss/t/flnl1)
 
-## 人物故事集内容上新
+## 【活动】国家叙事 2 期 <Badge text="规划中" type="info" />
+1. 塞尔维门《结果向左，过程向右》
 
+## 人物故事集内容上新
 1. [锦帛《侠自平生》](./docs/novel/story/xiazipingsheng)
 
 ## 人物设定更新
-
 详情请查阅 [人物设定](./docs/setting/people#a)
 
 ## 国家介绍补全
-
 详情请查阅 [国家](./docs/setting/set#国家)
