@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: "Corli"
-  text: "一个架空的世界观"
+  text: ""
   actions:
     - theme: brand
       text: 世界观 & 设定
