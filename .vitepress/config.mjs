@@ -81,6 +81,7 @@ export default defineConfig({
           { text: '岁华灯', link: '/docs/novel/sidestory/hua/suihuadeng' },
           { text: '青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
           { text: '长圆时', link: '/docs/novel/sidestory/hua/changyuanshi' },
+          { text: '歌声之外', link: '/docs/novel/sidestory/corli/asong' },
         ]
       },
       {
@@ -88,6 +89,7 @@ export default defineConfig({
         items: [
           { text: '乘船归去', link: '/docs/novel/story/chengchuanguiqu' },
           { text: '侠自平生', link: '/docs/novel/story/xiazipingsheng' },
+          { text: '极化市场', link: '/docs/novel/story/jihuashichang' },
         ]
       },
       {
@@ -102,6 +104,7 @@ export default defineConfig({
         items: [
           { text: '华川《时代》', link: '/docs/novel/countryss/t/huachuan1' },
           { text: '菲林南利《乌托邦》', link: '/docs/novel/countryss/t/flnl1' },
+          { text: '塞尔维门《矿脉》', link: '/docs/novel/countryss/t/srwm1' },
         ]
       },
     ],

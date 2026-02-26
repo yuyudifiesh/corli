@@ -13,6 +13,7 @@ prev: false
 
 1. [华川《时代》](./docs/novel/countryss/t/huachuan1)
 2. [菲林南利《乌托邦》](./docs/novel/countryss/t/flnl1)
+3. [塞尔维门《矿脉》](./docs/novel/countryss/t/srwm1.md)
 
 ## 【活动】国家叙事 2 期 <Badge text="规划中" type="info" />
 1. 塞尔维门《结果向左，过程向右》

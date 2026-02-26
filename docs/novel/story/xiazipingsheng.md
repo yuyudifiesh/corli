@@ -1,7 +1,3 @@
----
-next: false
----
-
 # 侠自平生 <Badge text="已完结" type="tip" />
 
 > 侠，义之大者。
