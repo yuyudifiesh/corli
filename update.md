@@ -8,6 +8,10 @@ prev: false
 本页面仅展示最新的更新和进行中的活动，不保留其他内容。
 :::
 
+::: warning 最新更新日期
+Git: 2026-03-03 16:15:00
+:::
+
 ## 【活动】国家叙事 1 期 <Badge text="进行中" type="warning" />
 > 民族从黑暗中走来，政体建立在土地之上。
 
@@ -18,10 +22,12 @@ prev: false
 ## 【活动】国家叙事 2 期 <Badge text="规划中" type="info" />
 1. 塞尔维门《结果向左，过程向右》
 
-## 人物故事集内容上新
-1. [锦帛《侠自平生》](./docs/novel/story/xiazipingsheng)
+## 故事集内容上新
+1. [《侠自平生》](./docs/novel/story/xiazipingsheng)
 
 ## 人物设定更新
+1. [姜开河](./docs/novel/people/jiangkaihe)
+
 详情请查阅 [人物设定](./docs/setting/people#a)
 
 ## 国家介绍补全
