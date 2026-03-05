@@ -3,7 +3,8 @@ layout: home
 
 hero:
   name: "Corli"
-  text: "Wake up !"
+  text: ""
+  tagline: "回忆起你的过去，经历着现在，才能拥有未来"
   actions:
     - theme: brand
       text: 设定
