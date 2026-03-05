@@ -3,22 +3,22 @@ layout: home
 
 hero:
   name: "Corli"
-  text: ""
+  text: "Wake up !"
   actions:
     - theme: brand
       text: 世界观 & 设定
       link: /docs/setting/set
     - theme: brand
-      text: 更新
+      text: 更新 & 预告
       link: /update
     - theme: alt
-      text: 阅读主线
+      text: 探索世界
       link: /docs/novel/f/1
     - theme: alt
-      text: 阅读支线
+      text: 支线章节
       link: /docs/novel/sidestory/hua/suihuadeng
     - theme: alt
-      text: 碎片数据
+      text: 触及过去
       link: /docs/poem
 ---
 
