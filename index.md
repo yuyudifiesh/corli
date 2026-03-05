@@ -6,10 +6,10 @@ hero:
   text: "Wake up !"
   actions:
     - theme: brand
-      text: 世界观 & 设定
+      text: 设定
       link: /docs/setting/set
     - theme: brand
-      text: 更新 & 预告
+      text: 更新
       link: /update
     - theme: alt
       text: 探索世界
