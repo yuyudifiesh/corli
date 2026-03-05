@@ -21,5 +21,8 @@ hero:
     - theme: alt
       text: 触及过去
       link: /docs/poem
+    - theme: alt
+      text: 故事集
+      link: /docs/novel/story/chengchuanguiqu
 ---
 
