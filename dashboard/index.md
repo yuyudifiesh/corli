@@ -33,7 +33,7 @@ features:
   - icon: ✉️
     title: 信箱
     details: 查看舰船人员发送给您的信件
-    link: /docs/email/index
+    link: ./email
     linkText: 查看信箱
   - icon: 😎
     title: 舰船人员
