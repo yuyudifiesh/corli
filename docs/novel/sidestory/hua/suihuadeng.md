@@ -2,7 +2,7 @@
 prev: false
 ---
 
-# 岁华灯 <Badge text="已完结" type="tip" />
+# SS-1 岁华灯 <Badge text="已完结" type="tip" />
 > 百安城的桃符映透千里霜雪，爆竹声碎落长街。
 >
 > 总有人困于光阴裂隙，身影被岁影吞没。

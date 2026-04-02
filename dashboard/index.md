@@ -18,7 +18,7 @@ features:
   - icon: 📖
     title: 支线章节
     details: 
-    link: ../docs/novel/sidestory/hua/suihuadeng
+    link: ./sidestory
     linkText: 开始探索
   - icon: 📖
     title: 触及过去

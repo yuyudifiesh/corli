@@ -15,7 +15,6 @@ export default defineConfig({
 
     // 汉化
     outlineTitle: '标题大纲',
-    outline: [2,6],
     sidebarMenuLabel: '目录',
     darkModeSwitchTitle: '切换深色主题',
     darkModeSwitchLabel: '切换主题',
@@ -24,33 +23,34 @@ export default defineConfig({
     returnToTopLabel: '返回顶部',
 
     // 搜索
-    search: {
-      provider: 'local',
-      options: {
-        locales: {
-          root: {
-            translations: {
-              button: {
-                buttonText: '搜索',
-                buttonAriaLabel: '搜索'
-              },
-              modal: {
-                noResultsText: '无法找到相关结果',
-                resetButtonTitle: '清除查询条件',
-                footer: {
-                  selectText: '选择',
-                  navigateText: '切换'
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+//    search: {
+//      provider: 'local',
+//      options: {
+//        locales: {
+//          root: {
+//            translations: {
+//              button: {
+//                buttonText: '搜索',
+//                buttonAriaLabel: '搜索'
+//              },
+//              modal: {
+//                noResultsText: '无法找到相关结果',
+//                resetButtonTitle: '清除查询条件',
+//                footer: {
+//                  selectText: '选择',
+//                  navigateText: '切换'
+//                }
+//              }
+//            }
+//          }
+//        }
+//      }
+//    },
 
     sidebar: [
       {
         text: '设定',
+        collapsed: true,
         items: [
           { text: '设定', link: '/docs/setting/set' },
           { text: '人物设定', link: '/docs/setting/people' }
@@ -58,6 +58,7 @@ export default defineConfig({
       },
       {
         text: '主线',
+        collapsed: true,
         items: [
           { text: '唤醒', link: '/docs/novel/f/0' },
           { text: '灰烬时代', link: '/docs/novel/f/1' },
@@ -78,15 +79,17 @@ export default defineConfig({
       },
       {
         text: '支线',
+        collapsed: true,
         items: [
-          { text: '岁华灯', link: '/docs/novel/sidestory/hua/suihuadeng' },
-          { text: '青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
-          { text: '长圆时', link: '/docs/novel/sidestory/hua/changyuanshi' },
-          { text: '歌声之外', link: '/docs/novel/sidestory/corli/asong' },
+          { text: 'SS-1 岁华灯', link: '/docs/novel/sidestory/hua/suihuadeng' },
+          { text: 'SS-2 青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
+//          { text: 'SS-3 长圆时', link: '/docs/novel/sidestory/hua/changyuanshi' },
+          { text: 'AS-1 歌声之外', link: '/docs/novel/sidestory/corli/asong' },
         ]
       },
       {
         text: '故事集',
+        collapsed: true,
         items: [
           { text: '乘船归去', link: '/docs/novel/story/chengchuanguiqu' },
           { text: '侠自平生', link: '/docs/novel/story/xiazipingsheng' },
@@ -95,6 +98,7 @@ export default defineConfig({
       },
       {
         text: '联动剧情',
+        collapsed: true,
         items: [
           { text: '海蚀时代', link: '/docs/novel/haishi' },
           { text: '旧梦泡影', link: '/docs/novel/jiumengpaoying' },
@@ -102,6 +106,7 @@ export default defineConfig({
       },
       {
         text: '国家叙事',
+        collapsed: true,
         items: [
           { text: '华川《时代》', link: '/docs/novel/countryss/t/huachuan1' },
           { text: '菲林南利《乌托邦》', link: '/docs/novel/countryss/t/flnl1' },
