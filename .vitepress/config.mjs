@@ -91,9 +91,9 @@ export default defineConfig({
         text: '故事集',
         collapsed: true,
         items: [
-          { text: '乘船归去', link: '/docs/novel/story/chengchuanguiqu' },
+//          { text: '乘船归去', link: '/docs/novel/story/chengchuanguiqu' },
           { text: '侠自平生', link: '/docs/novel/story/xiazipingsheng' },
-          { text: '极化市场', link: '/docs/novel/story/jihuashichang' },
+//          { text: '极化市场', link: '/docs/novel/story/jihuashichang' },
         ]
       },
       {
