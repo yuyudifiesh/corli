@@ -1,4 +1,4 @@
-# SS-3 长圆时 <Badge text="预告" type="warning" />
+# SS-4 长圆时 <Badge text="预告" type="warning" />
 
 > 四时更替，人生尔尔。
 >

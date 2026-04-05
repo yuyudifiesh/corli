@@ -83,7 +83,7 @@ export default defineConfig({
         items: [
           { text: 'SS-1 岁华灯', link: '/docs/novel/sidestory/hua/suihuadeng' },
           { text: 'SS-2 青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
-//          { text: 'SS-3 长圆时', link: '/docs/novel/sidestory/hua/changyuanshi' },
+          { text: 'SS-3 长歌行', link: '/docs/novel/sidestory/hua/changgexing' },
           { text: 'AS-1 歌声之外', link: '/docs/novel/sidestory/corli/asong' },
         ]
       },

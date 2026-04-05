@@ -13,9 +13,12 @@ prev: false
 :::
 
 ::: details SS 岁岁平安
+### 2026 年
+- [SS-3 长歌行](/docs/novel/sidestory/hua/changgexing)
+
 ### 2025 年
-- [青阳稔](/docs/novel/sidestory/hua/qingyangren)
+- [SS-2 青阳稔](/docs/novel/sidestory/hua/qingyangren)
 
 ### 2024 年
-- [岁华灯](/docs/novel/sidestory/hua/suihuadeng)
+- [SS-1 岁华灯](/docs/novel/sidestory/hua/suihuadeng)
 :::
