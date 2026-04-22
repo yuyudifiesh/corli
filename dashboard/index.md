@@ -12,7 +12,7 @@ hero:
 features:
   - icon: 📖
     title: 探索世界
-    details: 为了舰船、为了明日、为了寻找。
+    details: 为了明日。
     link: ../docs/novel/f/1
     linkText: 开始探索
   - icon: 📖
