@@ -1,4 +1,4 @@
-# SS-2 青阳稔 <Badge text="已完结" type="tip" />
+# HU-2 青阳稔 <Badge text="已完结" type="tip" />
 > 青秧承晓露，正是稼穑连心时。
 >
 > 奈何商声农语渐成壑，

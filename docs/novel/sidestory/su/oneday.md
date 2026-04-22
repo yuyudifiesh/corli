@@ -3,7 +3,7 @@ next: false
 prev: false
 ---
 
-# SS-5 总有一天
+# SU-1 总有一天
 
 ## 预告
 
