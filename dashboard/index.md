@@ -23,7 +23,7 @@ features:
   - icon: 📖
     title: 触及过去
     details: 不要忘记你的过去，不要忘记你的使命。
-    link: ../docs/poem
+    link: ./poem
     linkText: 开始回忆
   - icon: 📖
     title: 故事集
