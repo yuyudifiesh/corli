@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Corli"
   text: ""
-  tagline: "页面板块微调中……"
+  tagline: "设定内容调整中……"
   actions:
     - theme: brand
       text: 设定
