@@ -15,6 +15,7 @@ export default defineConfig({
 
     // 汉化
     outlineTitle: '标题大纲',
+    outline: [2, 4],
     sidebarMenuLabel: '目录',
     darkModeSwitchTitle: '切换深色主题',
     darkModeSwitchLabel: '切换主题',

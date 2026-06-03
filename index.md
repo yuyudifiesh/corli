@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Corli"
   text: ""
-  tagline: "回忆起你的过去，经历着现在，才能拥有未来"
+  tagline: "页面板块微调中……"
   actions:
     - theme: brand
       text: 设定
@@ -15,5 +15,8 @@ hero:
     - theme: brand
       text: 登录舰船终端
       link: /dashboard/index
+    - theme: alt
+      text: WIKI
+      link: /wiki/index
 ---
 
