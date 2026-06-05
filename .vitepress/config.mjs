@@ -58,12 +58,12 @@ export default defineConfig({
         ]
       },
       {
-        text: '主线',
+        text: '主线（内容修改中）',
         collapsed: true,
         items: [
           { text: '唤醒', link: '/docs/novel/f/0' },
-          { text: '灰烬时代', link: '/docs/novel/f/1' },
-          { text: '黎明前夜', link: '/docs/novel/f/2' },
+//          { text: '灰烬时代', link: '/docs/novel/f/1' },
+//          { text: '黎明前夜', link: '/docs/novel/f/2' },
 //          { text: '冲破黑暗', link: '/docs/novel/f/3' },
 //          { text: '步行千里', link: '/docs/novel/f/4' },
 //          { text: '身当以生', link: '/docs/novel/f/5' },
