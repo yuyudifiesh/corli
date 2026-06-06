@@ -8,6 +8,9 @@ hero:
     - theme: alt
       text: 回到登录页面
       link: ../index
+    - theme: alt
+      text: 舰船文件库
+      link: https://yuyudifiesh.github.io/corli/voices.htm
 
 features:
   - icon: 📖
