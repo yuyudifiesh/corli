@@ -11,6 +11,9 @@ hero:
     - theme: alt
       text: 舰船文件库
       link: https://yuyudifiesh.github.io/corli/voices.htm
+    - theme: alt
+      text: 项目搜索
+      link: https://yuyudifiesh.github.io/corli/ark.htm
 
 features:
   - icon: 📖
