@@ -86,9 +86,11 @@ export default defineConfig({
           { text: 'SS-2 青阳稔', link: '/docs/novel/sidestory/hua/qingyangren' },
           { text: 'SS-3 长歌行', link: '/docs/novel/sidestory/hua/changgexing' },
           { text: 'AS-1 歌声之外', link: '/docs/novel/sidestory/corli/asong' },
+          { text: 'LM-1 恩赐', link: '/docs/novel/sidestory/lm/lm1' },
         ]
       },
       {
+
         text: '故事集',
         collapsed: true,
         items: [

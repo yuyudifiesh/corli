@@ -18,5 +18,12 @@ hero:
     - theme: alt
       text: WIKI
       link: /wiki/index
+
+features:
+  - icon: ✨
+    title: 新支线章节开放
+    details: 支线 ⌈恩赐⌋ 开放中
+    link: /docs/novel/sidestory/lm/lm1
+    linkText: 开始探索
 ---
 

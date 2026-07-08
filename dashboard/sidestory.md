@@ -8,11 +8,11 @@ prev: false
 您可以按照主题分类查看支线活动章节。
 :::
 
-::: details AS 琉泊塔
+::: details 琉泊塔
 - [歌声之外](/docs/novel/sidestory/corli/asong)
 :::
 
-::: details SS 岁岁平安
+::: details 岁岁平安
 ### 2026 年
 - [SS-3 长歌行](/docs/novel/sidestory/hua/changgexing)
 
@@ -21,4 +21,8 @@ prev: false
 
 ### 2024 年
 - [SS-1 岁华灯](/docs/novel/sidestory/hua/suihuadeng)
+:::
+
+::: details 丛林的呼号
+- [LM-1 恩赐](/docs/novel/sidestory/lm/lm1)
 :::
