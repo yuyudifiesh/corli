@@ -1,7 +1,3 @@
----
-next: false
----
-
 # AS-1 歌声之外
 
 ## Intro
