@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Corli</title>
+    <style>
+        /* 全局禁止复制 + 禁止选中 */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+        }
+
+        /* 针对按钮的额外重置，彻底移除移动端高亮 */
+        button,
+        .option-btn {
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+            outline: none !important;
+            -webkit-touch-callout: none;
+        }
+
+        /* 针对移动端按钮点击时的默认高亮移除 */
+        button:focus,
+        button:active,
+        .option-btn:focus,
+        .option-btn:active {
+            outline: 0 !important;
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'FangSong', '华文仿宋', 'STFangsong', 'Times New Roman', serif;
+            transition: background-color 1.2s ease;
+            padding: 1.5rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            max-width: 820px;
+            width: 100%;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 0;
+            background: transparent;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .question-area {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .question-text {
+            color: #f0f0f0;
+            font-size: 2rem;
+            line-height: 1.7;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+            white-space: pre-wrap;
+            word-break: break-word;
+            min-height: 4.5rem;
+            transition: color 0.3s;
+            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .options-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            margin-top: 1.8rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .options-area.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .option-item {
+            list-style: none;
+            width: 100%;
+            max-width: 560px;
+            text-align: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .option-btn {
+            background: transparent;
+            border: none;
+            color: #d0d0d0;
+            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            font-size: 1.4rem;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.08em;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #777;
+            background: none;
+            box-shadow: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            width: auto;
+            display: inline-block;
+            line-height: 1.8;
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+            outline: none !important;
+            -webkit-touch-callout: none;
+        }
+
+        .option-btn:hover {
+            color: #ffffff;
+            text-decoration-color: #ffffff;
+            text-decoration-thickness: 2px;
+            transform: scale(1.02);
+        }
+
+        .option-btn:active {
+            transform: scale(0.96);
+            opacity: 0.7;
+            outline: 0 !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        .option-btn:focus {
+            outline: 0 !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        .transition-line {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            letter-spacing: 0.06em;
+            margin: 1.8rem 0 0.8rem 0;
+            font-style: italic;
+            opacity: 0.75;
+            border-top: 1px dashed #444;
+            padding-top: 1.8rem;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            transition: opacity 0.3s;
+            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .end-message {
+            font-size: 2.2rem;
+            letter-spacing: 0.06em;
+            line-height: 1.6;
+            padding: 1.2rem;
+            font-weight: 400;
+            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .end-message.light {
+            color: #1e1e1e;
+        }
+
+        .end-message.dark {
+            color: #f0f0f0;
+        }
+
+        body.bg-light .question-text {
+            color: #1a1a1a;
+            text-shadow: none;
+        }
+
+        body.bg-light .option-btn {
+            color: #1a1a1a;
+            text-decoration-color: #444;
+        }
+
+        body.bg-light .option-btn:hover {
+            color: #000;
+            text-decoration-color: #000;
+        }
+
+        body.bg-light .transition-line {
+            color: #3a3a3a;
+            border-top-color: #888;
+        }
+
+        .no-interaction .option-btn {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: default;
+            transform: none !important;
+            text-decoration-color: #666 !important;
+        }
+
+        .no-interaction .options-area {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @media (max-width: 600px) {
+            .question-text {
+                font-size: 1.6rem;
+                min-height: 3.8rem;
+            }
+            .option-btn {
+                font-size: 1.2rem;
+                padding: 0.2rem 0.4rem;
+                text-underline-offset: 4px;
+            }
+            .transition-line {
+                font-size: 1rem;
+                width: 95%;
+            }
+            .end-message {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="appContainer">
+        <div class="question-area" id="questionArea">
+            <div class="question-text" id="questionText"></div>
+            <ul class="options-area" id="optionsArea">
+                <li class="option-item"><button class="option-btn" id="optionA">A</button></li>
+                <li class="option-item"><button class="option-btn" id="optionB">B</button></li>
+            </ul>
+        </div>
+        <div class="transition-line" id="transitionLine"></div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            const QUESTIONS = [
+                { question: '你好啊，我们又见面了。', options: ['是的。', '上一次过去很久了。'], flags: ['T', 'F'] },
+                { question: '我们又回到了那个问题：创世者如何创造人类？', options: ['给予人类以智慧。', '给予人类以力量。'], flags: ['T', 'F'] },
+                { question: '那……土地何以承载生命？', options: ['生命改造土地来获取生存的土壤。', '生命妥协土地所带来的苦难来发展文明。'], flags: ['F', 'T'] },
+                { question: '最近发生的很多事情对你来说是否有点无法接受？', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '那些人们都在看着你，你有没有认为自己被赋予了难以看到希望的使命？', options: ['是的。', '不是。'], flags: ['T', 'F'] },
+                { question: '个体生命的价值会因其认知与行为能力而在群体内产生差异。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '文明的价值可以被衡量和比较。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '文明存在与其发展的目的间接构成了文明群体中个体生命的行为准则。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '生物生命不是唯一的生命形态，在文明发展中，个体生命的形态可以有所改变。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '注定不会实现的希望是一种无法原谅的谎言。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '不是出于私心的隐瞒应该被原谅。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '或许我们不应该拯救他们。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '故事的结局正在改变。', options: ['同意。', '不同意。'], flags: ['T', 'F'] }
+            ];
+
+            let currentIndex = 0;
+            let tCount = 0,
+                fCount = 0;
+            let tCountFromQ6 = 0,
+                fCountFromQ6 = 0;
+            let isEnding = false;
+            let typingTimer = null;
+            let transitionTimer = null;
+            let q13LoopActive = false;
+
+            const questionText = document.getElementById('questionText');
+            const optionsArea = document.getElementById('optionsArea');
+            const transitionLine = document.getElementById('transitionLine');
+            const container = document.getElementById('appContainer');
+            const body = document.body;
+
+            function getOptionA() { return document.getElementById('optionA'); }
+            function getOptionB() { return document.getElementById('optionB'); }
+
+            const STORAGE_KEY = 'quiz_final_state';
+
+            function clearTimers() {
+                if (typingTimer) { clearTimeout(typingTimer);
+                    typingTimer = null; }
+                if (transitionTimer) { clearTimeout(transitionTimer);
+                    transitionTimer = null; }
+            }
+
+            function disableAllInteractions() {
+                container.classList.add('no-interaction');
+                optionsArea.classList.remove('visible');
+                const optA = getOptionA();
+                const optB = getOptionB();
+                if (optA) optA.disabled = true;
+                if (optB) optB.disabled = true;
+            }
+
+            function saveEndState(message, isLight) {
+                const state = { ended: true, message, lightBackground: isLight, timestamp: Date.now() };
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+            }
+
+            function checkStoredEnd() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (!raw) return false;
+                    const state = JSON.parse(raw);
+                    if (state && state.ended) {
+                        showEndScreen(state.message, state.lightBackground);
+                        return true;
+                    }
+                } catch (e) {}
+                return false;
+            }
+
+            function showEndScreen(message, isLight) {
+                if (isEnding) return;
+                isEnding = true;
+                clearTimers();
+                disableAllInteractions();
+                optionsArea.classList.remove('visible');
+                transitionLine.textContent = '';
+                if (isLight) {
+                    body.classList.add('bg-light');
+                    body.style.backgroundColor = '#f0f0f0';
+                    questionText.className = 'question-text end-message light';
+                } else {
+                    body.classList.remove('bg-light');
+                    body.style.backgroundColor = '#000';
+                    questionText.className = 'question-text end-message dark';
+                }
+                questionText.textContent = message;
+                saveEndState(message, isLight);
+            }
+
+            function evaluateEnding() {
+                if (isEnding) return true;
+                if (tCountFromQ6 >= 6) {
+                    showEndScreen('也许有一天你能找到现在的意义。', true);
+                } else {
+                    showEndScreen('也许过去发生的事情仍在继续。', false);
+                }
+                return true;
+            }
+
+            function showOptions(show) {
+                if (show) optionsArea.classList.add('visible');
+                else optionsArea.classList.remove('visible');
+            }
+
+            function typeQuestion(text, callback) {
+                if (isEnding) return;
+                questionText.textContent = '';
+                showOptions(false);
+                let index = 0;
+                const chars = text.split('');
+                if (typingTimer) clearTimeout(typingTimer);
+
+                function typeChar() {
+                    if (isEnding) return;
+                    if (index < chars.length) {
+                        questionText.textContent += chars[index];
+                        index++;
+                        typingTimer = setTimeout(typeChar, 45 + Math.random() * 25);
+                    } else {
+                        typingTimer = null;
+                        if (typeof callback === 'function') callback();
+                    }
+                }
+                typeChar();
+            }
+
+            function showTransition(text, nextCallback) {
+                if (isEnding) return;
+                clearTimers();
+                showOptions(false);
+                questionText.textContent = '';
+                transitionLine.textContent = '';
+                let idx = 0;
+                const chars = text.split('');
+                if (typingTimer) clearTimeout(typingTimer);
+
+                function typeTransition() {
+                    if (isEnding) return;
+                    if (idx < chars.length) {
+                        transitionLine.textContent += chars[idx];
+                        idx++;
+                        typingTimer = setTimeout(typeTransition, 40 + Math.random() * 20);
+                    } else {
+                        typingTimer = null;
+                        transitionTimer = setTimeout(() => {
+                            transitionTimer = null;
+                            transitionLine.textContent = '';
+                            if (typeof nextCallback === 'function') nextCallback();
+                        }, 5000);
+                    }
+                }
+                typeTransition();
+            }
+
+            function loadQuestion(index) {
+                if (isEnding) return;
+                if (index >= QUESTIONS.length) return;
+
+                transitionLine.textContent = '';
+                const q = QUESTIONS[index];
+                const optA = q.options[0];
+                const optB = q.options[1];
+
+                const btnA = getOptionA();
+                const btnB = getOptionB();
+                if (btnA) btnA.textContent = optA;
+                if (btnB) btnB.textContent = optB;
+
+                const parentA = btnA ? btnA.parentNode : null;
+                const parentB = btnB ? btnB.parentNode : null;
+
+                if (parentA) {
+                    const newA = btnA.cloneNode(true);
+                    parentA.replaceChild(newA, btnA);
+                }
+                if (parentB) {
+                    const newB = btnB.cloneNode(true);
+                    parentB.replaceChild(newB, btnB);
+                }
+
+                const newBtnA = getOptionA();
+                const newBtnB = getOptionB();
+
+                if (newBtnA) {
+                    newBtnA.addEventListener('click', function handlerA() {
+                        handleOption(0, index);
+                    });
+                }
+                if (newBtnB) {
+                    newBtnB.addEventListener('click', function handlerB() {
+                        handleOption(1, index);
+                    });
+                }
+
+                const afterTyping = function() {
+                    if (isEnding) return;
+                    showOptions(true);
+                };
+
+                typeQuestion(q.question, afterTyping);
+            }
+
+            function handleOption(selectedIdx, qIndex) {
+                if (isEnding) return;
+                optionsArea.classList.remove('visible');
+
+                const q = QUESTIONS[qIndex];
+                const flag = q.flags[selectedIdx];
+                if (flag === 'T') {
+                    tCount++;
+                    if (qIndex >= 5) tCountFromQ6++;
+                } else {
+                    fCount++;
+                    if (qIndex >= 5) fCountFromQ6++;
+                }
+
+                if (qIndex === 12) {
+                    if (flag === 'F') {
+                        q13LoopActive = true;
+                        setTimeout(() => { loadQuestion(12); }, 300);
+                        return;
+                    } else {
+                        q13LoopActive = false;
+                        setTimeout(() => { evaluateEnding(); }, 400);
+                        return;
+                    }
+                }
+
+                const nextIndex = qIndex + 1;
+                let transitionText = '';
+                let isTransitionPoint = false;
+
+                if (qIndex === 0) {
+                    transitionText = '之前我提出的问题，你想得怎么样？是不是有点难？老师的问题有点太深奥了，也不知道他老人家怎么想的。';
+                    isTransitionPoint = true;
+                } else if (qIndex === 2) {
+                    transitionText = '你看到那些人们为了生存建立了所谓的“国家”，真被老师说中了，人们组成团体却不合作。';
+                    isTransitionPoint = true;
+                } else if (qIndex === 4) {
+                    transitionText = (tCount < 4) ? '看来您最近有些疲惫了，探索者，希望您可以休息一会儿，但时候不多了。' : '我们继续吧，这样的休闲时光很短暂。';
+                    isTransitionPoint = true;
+                } else if (qIndex === 9) {
+                    transitionText = (tCount < 4) ? '这是你在坚持这些毫无意义的事情的理由吗？' : '那你还在坚持什么呢？';
+                    isTransitionPoint = true;
+                }
+
+                if (qIndex !== 12) q13LoopActive = false;
+
+                if (isTransitionPoint && transitionText) {
+                    showTransition(transitionText, function() {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        if (nextIndex < QUESTIONS.length) loadQuestion(nextIndex);
+                    });
+                } else {
+                    setTimeout(() => {
+                        if (isEnding) return;
+                        if (nextIndex < QUESTIONS.length) loadQuestion(nextIndex);
+                    }, 400);
+                }
+            }
+
+            function init() {
+                if (checkStoredEnd()) return;
+                currentIndex = 0;
+                tCount = 0;
+                fCount = 0;
+                tCountFromQ6 = 0;
+                fCountFromQ6 = 0;
+                isEnding = false;
+                q13LoopActive = false;
+                body.classList.remove('bg-light');
+                body.style.backgroundColor = '#000';
+                questionText.className = 'question-text';
+                transitionLine.textContent = '';
+                showOptions(false);
+                container.classList.remove('no-interaction');
+                loadQuestion(0);
+            }
+
+            window.addEventListener('load', init);
+        })();
+    </script>
+</body>
+</html>
