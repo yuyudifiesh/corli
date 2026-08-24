@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style href="https://www.unpkg.com/font-online/css/source-han-sans.online.css"></style>
     <title>Corli</title>
     <style>
-        /* 全局禁止复制 + 禁止选中 */
         * {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -17,7 +16,6 @@
             tap-highlight-color: transparent !important;
         }
 
-        /* 针对按钮的额外重置，彻底移除移动端高亮 */
         button,
         .option-btn {
             -webkit-tap-highlight-color: transparent !important;
@@ -26,7 +24,6 @@
             -webkit-touch-callout: none;
         }
 
-        /* 针对移动端按钮点击时的默认高亮移除 */
         button:focus,
         button:active,
         .option-btn:focus,
