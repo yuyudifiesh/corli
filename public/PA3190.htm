@@ -81,6 +81,7 @@
             transition: color 0.3s;
             font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
             -webkit-tap-highlight-color: transparent;
+            cursor: default;
         }
 
         .options-area {
@@ -182,6 +183,7 @@
             font-weight: 400;
             font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
             -webkit-tap-highlight-color: transparent;
+            cursor: default;
         }
 
         .end-message.light {
@@ -192,37 +194,26 @@
             color: #f0f0f0;
         }
 
-        body.bg-light .question-text {
-            color: #1a1a1a;
-            text-shadow: none;
-        }
-
-        body.bg-light .option-btn {
-            color: #1a1a1a;
-            text-decoration-color: #444;
-        }
-
-        body.bg-light .option-btn:hover {
-            color: #000;
-            text-decoration-color: #000;
-        }
-
-        body.bg-light .transition-line {
-            color: #3a3a3a;
-            border-top-color: #888;
-        }
-
-        .no-interaction .option-btn {
+        .reset-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 0.8rem;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', serif;
+            letter-spacing: 0.1em;
             pointer-events: none;
-            opacity: 0.5;
-            cursor: default;
-            transform: none !important;
-            text-decoration-color: #666 !important;
+            transition: opacity 0.5s ease;
+            opacity: 0;
         }
 
-        .no-interaction .options-area {
-            opacity: 0.6;
-            pointer-events: none;
+        .reset-hint.visible {
+            opacity: 1;
+        }
+
+        body.bg-light .reset-hint {
+            color: rgba(0, 0, 0, 0.12);
         }
 
         @media (max-width: 600px) {
@@ -242,6 +233,10 @@
             .end-message {
                 font-size: 1.6rem;
             }
+            .reset-hint {
+                font-size: 0.6rem;
+                bottom: 16px;
+            }
         }
     </style>
 </head>
@@ -256,6 +251,8 @@
         </div>
         <div class="transition-line" id="transitionLine"></div>
     </div>
+
+    <div class="reset-hint" id="resetHint">长按结束文本 10 秒可重置进度</div>
 
     <script>
         (function() {
@@ -288,9 +285,13 @@
             let isEnding = false;
             let typingTimer = null;
             let transitionTimer = null;
-            let q16DisagreeCount = 0;
-            let q16AgreeCount = 0;
+            let q16DisagreeCount = 0;            // Q16连续不同意次数
             let isSpecialTransitionRunning = false;
+
+            // 长按重置相关
+            let pressTimer = null;
+            let isPressing = false;
+            const RESET_HOLD_TIME = 10000;
 
             // DOM 元素
             const questionText = document.getElementById('questionText');
@@ -298,11 +299,76 @@
             const transitionLine = document.getElementById('transitionLine');
             const container = document.getElementById('appContainer');
             const body = document.body;
+            const resetHint = document.getElementById('resetHint');
 
             function getOptionA() { return document.getElementById('optionA'); }
             function getOptionB() { return document.getElementById('optionB'); }
 
             const STORAGE_KEY = 'quiz_final_state_corli';
+
+            // ---------- 长按重置功能 ----------
+            function showResetHint(show) {
+                if (show) {
+                    resetHint.classList.add('visible');
+                } else {
+                    resetHint.classList.remove('visible');
+                }
+            }
+
+            function handlePressStart(e) {
+                if (!isEnding) return;
+                if (e.target !== questionText) return;
+                
+                isPressing = true;
+                showResetHint(true);
+                
+                if (pressTimer) {
+                    clearTimeout(pressTimer);
+                    pressTimer = null;
+                }
+                
+                pressTimer = setTimeout(function() {
+                    if (isPressing && isEnding) {
+                        try {
+                            localStorage.removeItem(STORAGE_KEY);
+                            console.log('[调试] 已清除 localStorage，页面即将刷新');
+                        } catch (e) {
+                            console.warn('[调试] 清除 localStorage 失败:', e);
+                        }
+                        window.location.reload();
+                    }
+                    pressTimer = null;
+                }, RESET_HOLD_TIME);
+            }
+
+            function handlePressEnd(e) {
+                if (e.target !== questionText) return;
+                isPressing = false;
+                showResetHint(false);
+                if (pressTimer) {
+                    clearTimeout(pressTimer);
+                    pressTimer = null;
+                }
+            }
+
+            function handlePressCancel(e) {
+                if (e.target !== questionText) return;
+                isPressing = false;
+                showResetHint(false);
+                if (pressTimer) {
+                    clearTimeout(pressTimer);
+                    pressTimer = null;
+                }
+            }
+
+            function bindResetEvents() {
+                questionText.addEventListener('mousedown', handlePressStart);
+                questionText.addEventListener('mouseup', handlePressEnd);
+                questionText.addEventListener('mouseleave', handlePressCancel);
+                questionText.addEventListener('touchstart', handlePressStart, { passive: true });
+                questionText.addEventListener('touchend', handlePressEnd, { passive: true });
+                questionText.addEventListener('touchcancel', handlePressCancel, { passive: true });
+            }
 
             // ---------- 辅助函数 ----------
             function clearTimers() {
@@ -357,6 +423,7 @@
                 }
                 questionText.textContent = message;
                 saveEndState(message, isLight);
+                bindResetEvents();
             }
 
             function evaluateEnding() {
@@ -426,7 +493,7 @@
                 typeTransition();
             }
 
-            // ---------- 显示特殊过渡句 (Q16连续三次不同意后) ----------
+            // ---------- 特殊过渡句 (连续三次不同意) ----------
             function showSpecialTransition(callback) {
                 if (isEnding) return;
                 isSpecialTransitionRunning = true;
@@ -458,7 +525,6 @@
                         return;
                     }
                     if (lineIndex < lines.length) {
-                        // 每行单独显示，逐行追加
                         if (lineIndex === 0) {
                             transitionLine.textContent = lines[lineIndex];
                         } else {
@@ -467,10 +533,8 @@
                         lineIndex++;
                         transitionTimer = setTimeout(showNextLine, 2000);
                     } else {
-                        // 全部显示完毕
                         transitionTimer = null;
                         isSpecialTransitionRunning = false;
-                        // 等待2秒后进入结局
                         setTimeout(() => {
                             transitionLine.textContent = '';
                             transitionLine.style.whiteSpace = '';
@@ -534,7 +598,7 @@
                 typeQuestion(q.question, afterTyping);
             }
 
-            // ---------- 处理选项点击 ----------
+            // ---------- 处理选项 ----------
             function handleOption(selectedIdx, qIndex) {
                 if (isEnding) return;
                 if (isSpecialTransitionRunning) return;
@@ -556,7 +620,6 @@
                     if (selectedIdx === 1) {
                         // 选择不同意
                         q16DisagreeCount++;
-                        q16AgreeCount = 0;
                         
                         if (q16DisagreeCount >= 3) {
                             // 连续三次不同意 -> 显示特殊过渡句，然后进入结局
@@ -567,22 +630,14 @@
                             });
                             return;
                         } else {
+                            // 未满三次，再问一次Q16
                             setTimeout(() => { loadQuestion(15); }, 300);
                             return;
                         }
                     } else {
-                        // 选择同意
-                        q16AgreeCount++;
-                        q16DisagreeCount = 0;
-                        
-                        if (q16AgreeCount >= 3) {
-                            // 连续三次同意 -> 跳出循环，进入结局
-                            setTimeout(() => { evaluateEnding(); }, 400);
-                            return;
-                        } else {
-                            setTimeout(() => { loadQuestion(15); }, 300);
-                            return;
-                        }
+                        // 选择同意 -> 直接进入结局（无论之前选过几次不同意）
+                        setTimeout(() => { evaluateEnding(); }, 400);
+                        return;
                     }
                 }
 
@@ -634,9 +689,9 @@
                     isTransitionPoint = true;
                 }
 
+                // 离开Q16时重置计数器
                 if (qIndex !== 15) {
                     q16DisagreeCount = 0;
-                    q16AgreeCount = 0;
                 }
 
                 if (isTransitionPoint && transitionText) {
@@ -663,7 +718,10 @@
 
             // ---------- 初始化 ----------
             function init() {
-                if (checkStoredEnd()) return;
+                if (checkStoredEnd()) {
+                    return;
+                }
+                
                 currentIndex = 0;
                 tCount = 0;
                 fCount = 0;
@@ -671,7 +729,6 @@
                 fCountFromQ6 = 0;
                 isEnding = false;
                 q16DisagreeCount = 0;
-                q16AgreeCount = 0;
                 isSpecialTransitionRunning = false;
                 body.classList.remove('bg-light');
                 body.style.backgroundColor = '#000';
