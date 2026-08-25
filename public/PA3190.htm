@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <style href="https://www.unpkg.com/font-online/css/source-han-sans.online.css"></style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <title>Corli</title>
     <style>
         * {
@@ -42,7 +42,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'FangSong', '华文仿宋', 'STFangsong', 'Times New Roman', serif;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', 'Times New Roman', serif;
             transition: background-color 1.2s ease;
             padding: 1.5rem;
             -webkit-tap-highlight-color: transparent;
@@ -79,7 +79,7 @@
             word-break: break-word;
             min-height: 4.5rem;
             transition: color 0.3s;
-            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -113,7 +113,7 @@
             background: transparent;
             border: none;
             color: #d0d0d0;
-            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
             font-size: 1.4rem;
             padding: 0.3rem 0.6rem;
             cursor: pointer;
@@ -168,8 +168,10 @@
             margin-left: auto;
             margin-right: auto;
             transition: opacity 0.3s;
-            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
             -webkit-tap-highlight-color: transparent;
+            white-space: pre-wrap;
+            line-height: 2.2;
         }
 
         .end-message {
@@ -178,7 +180,7 @@
             line-height: 1.6;
             padding: 1.2rem;
             font-weight: 400;
-            font-family: 'FangSong', '华文仿宋', 'STFangsong', serif;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -259,32 +261,38 @@
         (function() {
             'use strict';
 
+            // ---------- 题库 ----------
             const QUESTIONS = [
-                { question: '你好啊，我们又见面了。', options: ['是的。', '上一次过去很久了。'], flags: ['T', 'F'] },
+                { question: '你好啊，我们又见面了。', options: ['是的。', '上一次过去很久了。'], flags: ['T', 'T'] },
                 { question: '我们又回到了那个问题：创世者如何创造人类？', options: ['给予人类以智慧。', '给予人类以力量。'], flags: ['T', 'F'] },
-                { question: '那……土地何以承载生命？', options: ['生命改造土地来获取生存的土壤。', '生命妥协土地所带来的苦难来发展文明。'], flags: ['F', 'T'] },
+                { question: '土地何以承载生命？', options: ['生命改造土地来获取生存的土壤。', '生命妥协土地所带来的苦难来发展文明。'], flags: ['F', 'T'] },
                 { question: '最近发生的很多事情对你来说是否有点无法接受？', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
                 { question: '那些人们都在看着你，你有没有认为自己被赋予了难以看到希望的使命？', options: ['是的。', '不是。'], flags: ['T', 'F'] },
                 { question: '个体生命的价值会因其认知与行为能力而在群体内产生差异。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
                 { question: '文明的价值可以被衡量和比较。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '后世对我们的评价，远比我们这一代人的幸福更重要。', options: ['同意。', '不同意。'], flags: ['F', 'T'] },
+                { question: '所有文明最终都会消亡，因此永恒的时间不能作为价值尺度。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '为了文明在未来五百年的存续，今天牺牲十分之一的人口是可接受的。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
                 { question: '文明存在与其发展的目的间接构成了文明群体中个体生命的行为准则。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
                 { question: '生物生命不是唯一的生命形态，在文明发展中，个体生命的形态可以有所改变。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
                 { question: '注定不会实现的希望是一种无法原谅的谎言。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
                 { question: '不是出于私心的隐瞒应该被原谅。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
-                { question: '或许我们不应该拯救他们。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
+                { question: '我们不应该拯救他们。', options: ['同意。', '不同意。'], flags: ['T', 'F'] },
                 { question: '故事的结局正在改变。', options: ['同意。', '不同意。'], flags: ['T', 'F'] }
             ];
 
+            // ---------- 状态变量 ----------
             let currentIndex = 0;
-            let tCount = 0,
-                fCount = 0;
-            let tCountFromQ6 = 0,
-                fCountFromQ6 = 0;
+            let tCount = 0, fCount = 0;
+            let tCountFromQ6 = 0, fCountFromQ6 = 0;
             let isEnding = false;
             let typingTimer = null;
             let transitionTimer = null;
-            let q13LoopActive = false;
+            let q16DisagreeCount = 0;
+            let q16AgreeCount = 0;
+            let isSpecialTransitionRunning = false;
 
+            // DOM 元素
             const questionText = document.getElementById('questionText');
             const optionsArea = document.getElementById('optionsArea');
             const transitionLine = document.getElementById('transitionLine');
@@ -294,8 +302,9 @@
             function getOptionA() { return document.getElementById('optionA'); }
             function getOptionB() { return document.getElementById('optionB'); }
 
-            const STORAGE_KEY = 'quiz_final_state';
+            const STORAGE_KEY = 'quiz_final_state_corli';
 
+            // ---------- 辅助函数 ----------
             function clearTimers() {
                 if (typingTimer) { clearTimeout(typingTimer);
                     typingTimer = null; }
@@ -352,7 +361,7 @@
 
             function evaluateEnding() {
                 if (isEnding) return true;
-                if (tCountFromQ6 >= 6) {
+                if (tCountFromQ6 >= 9) {
                     showEndScreen('也许有一天你能找到现在的意义。', true);
                 } else {
                     showEndScreen('也许过去发生的事情仍在继续。', false);
@@ -365,6 +374,7 @@
                 else optionsArea.classList.remove('visible');
             }
 
+            // ---------- 打字机效果 ----------
             function typeQuestion(text, callback) {
                 if (isEnding) return;
                 questionText.textContent = '';
@@ -387,6 +397,7 @@
                 typeChar();
             }
 
+            // ---------- 过渡句打字 ----------
             function showTransition(text, nextCallback) {
                 if (isEnding) return;
                 clearTimers();
@@ -415,9 +426,69 @@
                 typeTransition();
             }
 
+            // ---------- 显示特殊过渡句 (Q16连续三次不同意后) ----------
+            function showSpecialTransition(callback) {
+                if (isEnding) return;
+                isSpecialTransitionRunning = true;
+                const lines = [
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的',
+                    '你会理解我的'
+                ];
+                let lineIndex = 0;
+                showOptions(false);
+                questionText.textContent = '';
+                transitionLine.textContent = '';
+                transitionLine.style.whiteSpace = 'pre-wrap';
+                transitionLine.style.lineHeight = '2.2';
+
+                function showNextLine() {
+                    if (isEnding) {
+                        isSpecialTransitionRunning = false;
+                        return;
+                    }
+                    if (lineIndex < lines.length) {
+                        // 每行单独显示，逐行追加
+                        if (lineIndex === 0) {
+                            transitionLine.textContent = lines[lineIndex];
+                        } else {
+                            transitionLine.textContent += '\n' + lines[lineIndex];
+                        }
+                        lineIndex++;
+                        transitionTimer = setTimeout(showNextLine, 2000);
+                    } else {
+                        // 全部显示完毕
+                        transitionTimer = null;
+                        isSpecialTransitionRunning = false;
+                        // 等待2秒后进入结局
+                        setTimeout(() => {
+                            transitionLine.textContent = '';
+                            transitionLine.style.whiteSpace = '';
+                            if (typeof callback === 'function') callback();
+                        }, 2000);
+                    }
+                }
+                showNextLine();
+            }
+
+            // ---------- 加载问题 ----------
             function loadQuestion(index) {
                 if (isEnding) return;
-                if (index >= QUESTIONS.length) return;
+                if (isSpecialTransitionRunning) return;
+                if (index >= QUESTIONS.length) {
+                    evaluateEnding();
+                    return;
+                }
 
                 transitionLine.textContent = '';
                 const q = QUESTIONS[index];
@@ -463,12 +534,15 @@
                 typeQuestion(q.question, afterTyping);
             }
 
+            // ---------- 处理选项点击 ----------
             function handleOption(selectedIdx, qIndex) {
                 if (isEnding) return;
+                if (isSpecialTransitionRunning) return;
                 optionsArea.classList.remove('visible');
 
                 const q = QUESTIONS[qIndex];
                 const flag = q.flags[selectedIdx];
+                
                 if (flag === 'T') {
                     tCount++;
                     if (qIndex >= 5) tCountFromQ6++;
@@ -477,18 +551,42 @@
                     if (qIndex >= 5) fCountFromQ6++;
                 }
 
-                if (qIndex === 12) {
-                    if (flag === 'F') {
-                        q13LoopActive = true;
-                        setTimeout(() => { loadQuestion(12); }, 300);
-                        return;
+                // ---------- Q16 特殊逻辑 (索引15) ----------
+                if (qIndex === 15) {
+                    if (selectedIdx === 1) {
+                        // 选择不同意
+                        q16DisagreeCount++;
+                        q16AgreeCount = 0;
+                        
+                        if (q16DisagreeCount >= 3) {
+                            // 连续三次不同意 -> 显示特殊过渡句，然后进入结局
+                            showSpecialTransition(function() {
+                                if (isEnding) return;
+                                transitionLine.textContent = '';
+                                evaluateEnding();
+                            });
+                            return;
+                        } else {
+                            setTimeout(() => { loadQuestion(15); }, 300);
+                            return;
+                        }
                     } else {
-                        q13LoopActive = false;
-                        setTimeout(() => { evaluateEnding(); }, 400);
-                        return;
+                        // 选择同意
+                        q16AgreeCount++;
+                        q16DisagreeCount = 0;
+                        
+                        if (q16AgreeCount >= 3) {
+                            // 连续三次同意 -> 跳出循环，进入结局
+                            setTimeout(() => { evaluateEnding(); }, 400);
+                            return;
+                        } else {
+                            setTimeout(() => { loadQuestion(15); }, 300);
+                            return;
+                        }
                     }
                 }
 
+                // ---------- 过渡句逻辑 ----------
                 const nextIndex = qIndex + 1;
                 let transitionText = '';
                 let isTransitionPoint = false;
@@ -500,29 +598,70 @@
                     transitionText = '你看到那些人们为了生存建立了所谓的“国家”，真被老师说中了，人们组成团体却不合作。';
                     isTransitionPoint = true;
                 } else if (qIndex === 4) {
-                    transitionText = (tCount < 4) ? '看来您最近有些疲惫了，探索者，希望您可以休息一会儿，但时候不多了。' : '我们继续吧，这样的休闲时光很短暂。';
+                    if (tCount < 4) {
+                        transitionText = '看来您最近有些疲惫了，探索者，希望您可以休息一会儿，但时候不多了。';
+                    } else {
+                        transitionText = '我们继续吧，这样的休闲时光很短暂。';
+                    }
                     isTransitionPoint = true;
-                } else if (qIndex === 9) {
-                    transitionText = (tCount < 4) ? '这是你在坚持这些毫无意义的事情的理由吗？' : '那你还在坚持什么呢？';
+                    
+                    const firstText = transitionText;
+                    const secondText = '接下来你只用回答同意或者不同意即可，请遵从自己的内心。';
+                    
+                    tCount = 0;
+                    fCount = 0;
+                    tCountFromQ6 = 0;
+                    fCountFromQ6 = 0;
+
+                    showTransition(firstText, function() {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        showTransition(secondText, function() {
+                            if (isEnding) return;
+                            transitionLine.textContent = '';
+                            if (nextIndex < QUESTIONS.length) {
+                                loadQuestion(nextIndex);
+                            }
+                        });
+                    });
+                    return;
+                } else if (qIndex === 12) {
+                    if (tCountFromQ6 < 6) {
+                        transitionText = '这是你在坚持这些毫无意义的事情的理由吗？';
+                    } else {
+                        transitionText = '那你还在坚持什么呢？';
+                    }
                     isTransitionPoint = true;
                 }
 
-                if (qIndex !== 12) q13LoopActive = false;
+                if (qIndex !== 15) {
+                    q16DisagreeCount = 0;
+                    q16AgreeCount = 0;
+                }
 
                 if (isTransitionPoint && transitionText) {
                     showTransition(transitionText, function() {
                         if (isEnding) return;
                         transitionLine.textContent = '';
-                        if (nextIndex < QUESTIONS.length) loadQuestion(nextIndex);
+                        if (nextIndex < QUESTIONS.length) {
+                            loadQuestion(nextIndex);
+                        } else {
+                            evaluateEnding();
+                        }
                     });
                 } else {
                     setTimeout(() => {
                         if (isEnding) return;
-                        if (nextIndex < QUESTIONS.length) loadQuestion(nextIndex);
+                        if (nextIndex < QUESTIONS.length) {
+                            loadQuestion(nextIndex);
+                        } else {
+                            evaluateEnding();
+                        }
                     }, 400);
                 }
             }
 
+            // ---------- 初始化 ----------
             function init() {
                 if (checkStoredEnd()) return;
                 currentIndex = 0;
@@ -531,11 +670,14 @@
                 tCountFromQ6 = 0;
                 fCountFromQ6 = 0;
                 isEnding = false;
-                q13LoopActive = false;
+                q16DisagreeCount = 0;
+                q16AgreeCount = 0;
+                isSpecialTransitionRunning = false;
                 body.classList.remove('bg-light');
                 body.style.backgroundColor = '#000';
                 questionText.className = 'question-text';
                 transitionLine.textContent = '';
+                transitionLine.style.whiteSpace = '';
                 showOptions(false);
                 container.classList.remove('no-interaction');
                 loadQuestion(0);
