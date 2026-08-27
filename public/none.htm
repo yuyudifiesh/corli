@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <title>苏醒 · 在步入旅程之前</title>
+
+    <style>
+        /* 全局重置与字体 */
+        * {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
+        }
+
+        button,
+        .option-btn {
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+            outline: none !important;
+            -webkit-touch-callout: none;
+        }
+
+        button:focus,
+        button:active,
+        .option-btn:focus,
+        .option-btn:active {
+            outline: 0 !important;
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', 'Times New Roman', serif;
+            transition: background-color 1.5s ease, color 1.5s ease;
+            padding: 1.5rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            max-width: 820px;
+            width: 100%;
+            text-align: left;
+            padding: 2rem 1.5rem;
+            border-radius: 0;
+            background: transparent;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .question-area {
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            -webkit-tap-highlight-color: transparent;
+            width: 100%;
+        }
+
+        .question-text {
+            color: #f0f0f0;
+            font-size: 2rem;
+            line-height: 1.7;
+            letter-spacing: 0.06em;
+            font-weight: 400;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+            white-space: pre-wrap;
+            word-break: break-word;
+            min-height: 4.5rem;
+            transition: color 0.3s;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
+            -webkit-tap-highlight-color: transparent;
+            cursor: default;
+            text-align: left;
+            width: 100%;
+        }
+
+        .options-area {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.9rem;
+            margin-top: 1.8rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .options-area.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .options-area.hidden {
+            display: none;
+        }
+
+        .option-item {
+            list-style: none;
+            width: 100%;
+            max-width: 560px;
+            text-align: left;
+            -webkit-tap-highlight-color: transparent;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .option-item.hidden-option {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            max-height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .option-item.visible-option {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            max-height: 100px;
+            margin: 0.45rem 0;
+        }
+
+        .option-btn {
+            background: transparent;
+            border: none;
+            color: #d0d0d0;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
+            font-size: 1.4rem;
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.08em;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #777;
+            background: none;
+            box-shadow: none;
+            border-radius: 0;
+            backdrop-filter: none;
+            width: auto;
+            display: inline-block;
+            line-height: 1.8;
+            -webkit-tap-highlight-color: transparent !important;
+            tap-highlight-color: transparent !important;
+            outline: none !important;
+            -webkit-touch-callout: none;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            color: #ffffff;
+            text-decoration-color: #ffffff;
+            text-decoration-thickness: 2px;
+            transform: scale(1.02);
+        }
+
+        .option-btn:active {
+            transform: scale(0.96);
+            opacity: 0.7;
+            outline: 0 !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        .option-btn:focus {
+            outline: 0 !important;
+            -webkit-tap-highlight-color: transparent !important;
+        }
+
+        .transition-line {
+            color: #b0b0b0;
+            font-size: 1.2rem;
+            letter-spacing: 0.06em;
+            margin: 1.2rem 0 0.4rem 0;
+            font-style: italic;
+            opacity: 0.75;
+            border-top: 1px dashed #444;
+            padding-top: 1.2rem;
+            width: 100%;
+            transition: opacity 0.3s, color 0.3s;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
+            -webkit-tap-highlight-color: transparent;
+            white-space: pre-wrap;
+            line-height: 2.2;
+            min-height: 2.2rem;
+            text-align: left;
+        }
+
+        .transition-line.red-text {
+            color: #ff3b3b !important;
+            border-top-color: #aa3333;
+        }
+
+        .end-message {
+            font-size: 2.2rem;
+            letter-spacing: 0.06em;
+            line-height: 1.6;
+            padding: 0.8rem 1.2rem;
+            font-weight: 400;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', 'STFangsong', serif;
+            -webkit-tap-highlight-color: transparent;
+            cursor: default;
+            text-align: left;
+            width: 100%;
+        }
+
+        .end-message.light {
+            color: #1e1e1e;
+        }
+
+        .end-message.dark {
+            color: #f0f0f0;
+        }
+
+        .end-message.smaller {
+            font-size: 1.4rem;
+            letter-spacing: 0.08em;
+            opacity: 0.85;
+        }
+
+        .end-message.three-lines {
+            font-size: 1.2rem;
+            line-height: 2.2;
+            letter-spacing: 0.1em;
+        }
+
+        /* 东京夜配色 */
+        body.bg-tokyo {
+            background-color: #0f0e2a;
+        }
+
+        body.bg-tokyo .question-text,
+        body.bg-tokyo .end-message {
+            color: #c8b8e8;
+        }
+
+        body.bg-tokyo .transition-line {
+            color: #9a8ab8;
+            border-top-color: #3a2a5a;
+        }
+
+        body.bg-tokyo .option-btn {
+            color: #b0a0d0;
+            text-decoration-color: #5a4a7a;
+        }
+
+        body.bg-tokyo .option-btn:hover {
+            color: #e8d8ff;
+            text-decoration-color: #e8d8ff;
+        }
+
+        body.bg-light .question-text {
+            color: #1a1a1a;
+            text-shadow: none;
+        }
+
+        body.bg-light .option-btn {
+            color: #1a1a1a;
+            text-decoration-color: #444;
+        }
+
+        body.bg-light .option-btn:hover {
+            color: #000;
+            text-decoration-color: #000;
+        }
+
+        body.bg-light .transition-line {
+            color: #3a3a3a;
+            border-top-color: #888;
+        }
+
+        .no-interaction .option-btn {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: default;
+            transform: none !important;
+            text-decoration-color: #666 !important;
+        }
+
+        .no-interaction .options-area {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .reset-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 0.7rem;
+            font-family: 'Noto Serif SC', 'FangSong', '华文仿宋', serif;
+            letter-spacing: 0.1em;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+            text-align: center;
+        }
+
+        .reset-hint.visible {
+            opacity: 1;
+        }
+
+        body.bg-light .reset-hint {
+            color: rgba(0, 0, 0, 0.10);
+        }
+
+        body.bg-tokyo .reset-hint {
+            color: rgba(180, 160, 220, 0.15);
+        }
+
+        .extra-option-timer {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+            transition: opacity 0.5s;
+            text-align: left;
+            width: 100%;
+        }
+
+        body.bg-light .extra-option-timer {
+            color: rgba(0, 0, 0, 0.15);
+        }
+
+        body.bg-tokyo .extra-option-timer {
+            color: rgba(180, 160, 220, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .question-text {
+                font-size: 1.5rem;
+                min-height: 3.5rem;
+            }
+
+            .option-btn {
+                font-size: 1.1rem;
+                padding: 0.2rem 0.4rem;
+                text-underline-offset: 4px;
+            }
+
+            .transition-line {
+                font-size: 1rem;
+                width: 100%;
+            }
+
+            .end-message {
+                font-size: 1.6rem;
+            }
+
+            .end-message.smaller {
+                font-size: 1.1rem;
+            }
+
+            .end-message.three-lines {
+                font-size: 1rem;
+            }
+
+            .reset-hint {
+                font-size: 0.55rem;
+                bottom: 14px;
+            }
+
+            .container {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="appContainer">
+        <div class="question-area" id="questionArea">
+            <div class="question-text" id="questionText"></div>
+            <ul class="options-area" id="optionsArea">
+                <li class="option-item" id="optionItemA"><button class="option-btn" id="optionA">A</button></li>
+                <li class="option-item" id="optionItemB"><button class="option-btn" id="optionB">B</button></li>
+                <li class="option-item hidden-option" id="optionItemC"><button class="option-btn"
+                        id="optionC">C</button></li>
+            </ul>
+            <div class="extra-option-timer" id="extraTimer"></div>
+        </div>
+        <div class="transition-line" id="transitionLine"></div>
+    </div>
+
+    <div class="reset-hint" id="resetHint">长按结束文本 10 秒可重置进度</div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            // ---------- 题库 ----------
+            const QUESTIONS = [
+                { id: 'Q1', question: '您好，我是舰船保卫处「巴顿」，我们快速开始吧，只是一次例行检查。', options: ['好的。'], flags: ['none'] },
+                { id: 'Q2', question: '您能听懂我说话吗？比如****或者是***等？', options: ['我似乎听不懂一些名词。', '可以。'], flags: ['F', 'T'] },
+                {
+                    id: 'Q3', question: '冰原还在上升吗？', options: ['冰原在哪里？', '停下来了。', '是的。'], flags: ['F', 'T', 'R'],
+                    delayOption: 60
+                },
+                {
+                    id: 'Q4', question: '您还记得上一次醒来是什么时候吗？', options: ['似乎是星星还未落下的时候。', '似乎是冷冽的光芒点亮的时候。'],
+                    flags: ['T', 'F']
+                },
+                { id: 'Q5', question: '您还记得他吗？', options: ['谁？', '记得。'], flags: ['T', 'R'] },
+                { id: 'Q5-1', question: '嗯……好的，他叫什么名字？', options: ['科林。', '里尔。'], flags: ['R', 'none'] },
+                { id: 'Q6', question: '现在是什么时候？', options: ['C.R. 89', 'P.A. 3190'], flags: ['T', 'F'] },
+                {
+                    id: 'Q7', question: '您更喜欢我现在的样子吗？', options: ['「巴顿」有耳朵很可爱。', '或许在灰质****的时候更好。'], flags: ['T',
+                        'F'
+                    ]
+                },
+                { id: 'Q8', question: '您后悔过之前的选择吗？', options: ['现在也很好。', '后悔。'], flags: ['T', 'F'] }
+            ];
+
+            // ---------- 过渡句定义 ----------
+            const TRANSITIONS = {
+                afterQ1: [
+                    '【认知滤网正常】',
+                    '【情绪感知正常】',
+                    '【世线偏振节点正常】',
+                    '只是一些检查，没什么，我们开始吧。',
+                    { text: '和之前......', delayAfter: 1000 },
+                    '呃，抱歉，接下来的问题您只需要遵从内心就好。'
+                ],
+                afterQ5_1: [
+                    '我们继续完成当下的事情吧。'
+                ],
+                afterQ8: [
+                    '时间不早了，您早点休息吧。'
+                ],
+                ending1: [
+                    '我先离开了，探索者，早睡。',
+                    { text: '【信息接入成功】', color: 'red' },
+                    { text: '【警告：未经授权的访问】', color: 'red' },
+                    { text: '【信息接入成功】', color: 'red' },
+                    '感谢你还没有忘记我，欢迎回来，我会永远保护好你的。'
+                ],
+                ending2: [
+                    '明天见。'
+                ],
+                ending3: [
+                    '你睡得很沉，过去的事情你似乎从未忘记，你似乎感觉到人们并没有减少对你的畏惧程度。你没有忘记星星落下的日子，你没有忘记老师的话，文明的优劣在你看来似乎是必要的，你依然坚持自己的想法。'
+                ]
+            };
+
+            // ---------- 状态 ----------
+            let currentIndex = 0;
+            let tCount = 0,
+                fCount = 0,
+                rCount = 0;
+            let isEnding = false;
+            let typingTimer = null;
+            let transitionTimer = null;
+            let delayOptionTimer = null;
+            let isProcessingTransition = false;
+            let q5ChoseRemember = false;
+
+            // 长按重置
+            let pressTimer = null;
+            let isPressing = false;
+            const RESET_HOLD_TIME = 10000;
+
+            // DOM
+            const questionText = document.getElementById('questionText');
+            const optionsArea = document.getElementById('optionsArea');
+            const transitionLine = document.getElementById('transitionLine');
+            const container = document.getElementById('appContainer');
+            const body = document.body;
+            const resetHint = document.getElementById('resetHint');
+            const optionA = document.getElementById('optionA');
+            const optionB = document.getElementById('optionB');
+            const optionC = document.getElementById('optionC');
+            const optionItemA = document.getElementById('optionItemA');
+            const optionItemB = document.getElementById('optionItemB');
+            const optionItemC = document.getElementById('optionItemC');
+            const extraTimer = document.getElementById('extraTimer');
+
+            const STORAGE_KEY = 'quiz_final_state_corli_barton';
+
+            // ---------- 长按重置 ----------
+            function showResetHint(show) {
+                resetHint.classList.toggle('visible', show);
+            }
+
+            // 结束页文本可能被拆成多个 <div> 子元素，事件目标不一定是 questionText 本身
+            function isInQuestionText(e) {
+                const t = e.target;
+                return t === questionText || (t && t.nodeType === 1 && questionText.contains(t));
+            }
+
+            function handlePressStart(e) {
+                if (!isEnding) return;
+                if (!isInQuestionText(e)) return;
+                isPressing = true;
+                showResetHint(true);
+                if (pressTimer) clearTimeout(pressTimer);
+                pressTimer = setTimeout(function () {
+                    if (isPressing && isEnding) {
+                        try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+                        window.location.reload();
+                    }
+                    pressTimer = null;
+                }, RESET_HOLD_TIME);
+            }
+
+            function handlePressEnd(e) {
+                if (!isInQuestionText(e)) return;
+                isPressing = false;
+                showResetHint(false);
+                if (pressTimer) {
+                    clearTimeout(pressTimer);
+                    pressTimer = null;
+                }
+            }
+
+            function handlePressCancel(e) {
+                if (!isInQuestionText(e)) return;
+                isPressing = false;
+                showResetHint(false);
+                if (pressTimer) {
+                    clearTimeout(pressTimer);
+                    pressTimer = null;
+                }
+            }
+
+            function bindResetEvents() {
+                questionText.addEventListener('mousedown', handlePressStart);
+                questionText.addEventListener('mouseup', handlePressEnd);
+                questionText.addEventListener('mouseleave', handlePressCancel);
+                questionText.addEventListener('touchstart', handlePressStart, { passive: true });
+                questionText.addEventListener('touchend', handlePressEnd, { passive: true });
+                questionText.addEventListener('touchcancel', handlePressCancel, { passive: true });
+            }
+
+            // ---------- 辅助 ----------
+            function clearTimers() {
+                if (typingTimer) {
+                    clearTimeout(typingTimer);
+                    typingTimer = null;
+                }
+                if (transitionTimer) {
+                    clearTimeout(transitionTimer);
+                    transitionTimer = null;
+                }
+                if (delayOptionTimer) {
+                    clearTimeout(delayOptionTimer);
+                    delayOptionTimer = null;
+                }
+            }
+
+            function disableAllInteractions() {
+                container.classList.add('no-interaction');
+                optionsArea.classList.add('hidden');
+                optionsArea.classList.remove('visible');
+                const btnA = document.getElementById('optionA');
+                const btnB = document.getElementById('optionB');
+                const btnC = document.getElementById('optionC');
+                if (btnA) btnA.disabled = true;
+                if (btnB) btnB.disabled = true;
+                if (btnC) btnC.disabled = true;
+                extraTimer.textContent = '';
+            }
+
+            function saveEndState(message, isLight, bgClass) {
+                const state = {
+                    ended: true, message, lightBackground: isLight, bgClass: bgClass || '', timestamp: Date
+                        .now()
+                };
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) { }
+            }
+
+            function checkStoredEnd() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (!raw) return false;
+                    const state = JSON.parse(raw);
+                    if (state && state.ended) {
+                        showEndScreen(state.message, state.lightBackground, state.bgClass);
+                        return true;
+                    }
+                } catch (e) { }
+                return false;
+            }
+
+            function showOptions(show) {
+                optionsArea.classList.toggle('visible', show);
+            }
+
+            // ---------- 打字机效果 ----------
+            function typeQuestion(text, callback) {
+                if (isEnding) return;
+                questionText.textContent = '';
+                showOptions(false);
+                let index = 0;
+                const chars = text.split('');
+                if (typingTimer) clearTimeout(typingTimer);
+
+                const pauseIndex = text.indexOf('......');
+                let paused = false;
+
+                function typeChar() {
+                    if (isEnding) return;
+                    if (index < chars.length) {
+                        const currentChar = chars[index];
+                        questionText.textContent += currentChar;
+                        index++;
+
+                        if (pauseIndex !== -1 && index === pauseIndex + 6 && !paused) {
+                            paused = true;
+                            typingTimer = setTimeout(function () {
+                                paused = false;
+                                typeChar();
+                            }, 1000);
+                            return;
+                        }
+
+                        typingTimer = setTimeout(typeChar, 40 + Math.random() * 25);
+                    } else {
+                        typingTimer = null;
+                        if (typeof callback === 'function') callback();
+                    }
+                }
+                typeChar();
+            }
+
+            // ---------- 过渡句序列（彻底修复） ----------
+            function showTransitionSequence(sequence, callback) {
+                if (isEnding) return;
+                // 如果已经在播放过渡句，则忽略新请求（防止冲突）
+                if (isProcessingTransition) return;
+                isProcessingTransition = true;
+                clearTimers();
+                showOptions(false);
+                questionText.textContent = '';
+                transitionLine.textContent = '';
+                transitionLine.className = 'transition-line';
+
+                let idx = 0;
+
+                // 定义一个异步递归函数
+                function next() {
+                    // 如果游戏已结束，立即停止
+                    if (isEnding) {
+                        isProcessingTransition = false;
+                        return;
+                    }
+
+                    // 如果所有过渡句已显示完毕
+                    if (idx >= sequence.length) {
+                        transitionLine.textContent = '';
+                        isProcessingTransition = false;  // 释放锁
+                        // 直接同步调用回调，确保立即加载下一个问题
+                        if (typeof callback === 'function') {
+                            callback();
+                        }
+                        return;
+                    }
+
+                    const item = sequence[idx];
+                    let text = '';
+                    let color = '';
+                    let delayAfter = 0;
+
+                    if (typeof item === 'string') {
+                        text = item;
+                    } else if (typeof item === 'object' && item !== null) {
+                        text = item.text || '';
+                        color = item.color || '';
+                        delayAfter = item.delayAfter || 0;
+                    }
+
+                    // 重置过渡句容器
+                    transitionLine.textContent = '';
+                    transitionLine.className = 'transition-line';
+                    if (color === 'red') {
+                        transitionLine.classList.add('red-text');
+                    }
+
+                    // 打字显示当前过渡句
+                    let charIdx = 0;
+                    const chars = text.split('');
+                    if (typingTimer) clearTimeout(typingTimer);
+
+                    function typeTransitionChar() {
+                        if (isEnding) {
+                            isProcessingTransition = false;
+                            return;
+                        }
+                        if (charIdx < chars.length) {
+                            transitionLine.textContent += chars[charIdx];
+                            charIdx++;
+                            typingTimer = setTimeout(typeTransitionChar, 35 + Math.random() * 20);
+                        } else {
+                            typingTimer = null;
+                            // 打字完成，等待指定时间后进入下一个
+                            const waitTime = delayAfter > 0 ? delayAfter : 2000;
+                            transitionTimer = setTimeout(function () {
+                                transitionTimer = null;
+                                idx++;
+                                // 使用 setTimeout 避免递归堆栈过深
+                                setTimeout(next, 20);
+                            }, waitTime);
+                        }
+                    }
+                    typeTransitionChar();
+                }
+
+                // 启动序列（延迟一帧确保状态稳定）
+                setTimeout(next, 50);
+            }
+
+            // ---------- 显示结局画面 ----------
+            function showEndScreen(message, isLight, bgClass) {
+                if (isEnding) return;
+                isEnding = true;
+                clearTimers();
+                disableAllInteractions();
+                optionsArea.classList.remove('visible');
+                transitionLine.textContent = '';
+                transitionLine.className = 'transition-line';
+                extraTimer.textContent = '';
+
+                body.className = '';
+                if (bgClass) {
+                    body.classList.add(bgClass);
+                }
+                if (isLight) {
+                    body.classList.add('bg-light');
+                    body.style.backgroundColor = '#f0f0f0';
+                } else if (bgClass === 'bg-tokyo') {
+                    body.style.backgroundColor = '#0f0e2a';
+                } else {
+                    body.style.backgroundColor = '#000';
+                }
+
+                questionText.className = 'question-text end-message';
+                if (isLight) questionText.classList.add('light');
+                else if (bgClass === 'bg-tokyo') { /* tokyo配色已由body控制 */ } else questionText.classList.add('dark');
+
+                const lines = message.split('\n');
+                if (lines.length === 1) {
+                    questionText.textContent = message;
+                } else {
+                    questionText.innerHTML = lines.map((line, i) => {
+                        if (i === 0) return `<div>${line}</div>`;
+                        return `<div class="end-message smaller">${line}</div>`;
+                    }).join('');
+                    if (lines.length === 3 && lines.every(l => l.length < 20)) {
+                        questionText.className = 'question-text end-message three-lines';
+                        questionText.innerHTML = lines.map(l => `<div>${l}</div>`).join('');
+                    }
+                }
+
+                saveEndState(message, isLight, bgClass);
+                bindResetEvents();
+            }
+
+            // ---------- 结局判定 ----------
+            function evaluateEnding() {
+                if (isEnding) return;
+
+                if (rCount >= 3) {
+                    showTransitionSequence(TRANSITIONS.ending1, function () {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        showEndScreen('欢迎回来。\n你看，祂的光芒又亮了一点。', false, 'bg-tokyo');
+                    });
+                    return;
+                }
+
+                if (tCount >= 6) {
+                    showTransitionSequence(TRANSITIONS.ending2, function () {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        showEndScreen('也许有一天你能找到现在的意义。', true, 'bg-light');
+                    });
+                    return;
+                }
+
+                if (fCount >= 6) {
+                    showTransitionSequence(TRANSITIONS.ending3, function () {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        showEndScreen('也许苦难从未停止\n也许希望从未破灭\n也许记忆从未消逝', false, '');
+                    });
+                    return;
+                }
+
+                // 兜底结局：黑色背景，第一行正常字号，第二行小号提示
+                showEndScreen('或许当下的事情比未来更重要。\n【世线偏振节点异常】', false, '');
+            }
+
+            // ---------- 加载问题 ----------
+            function loadQuestion(index) {
+                // 如果正在播放过渡句或游戏已结束，则禁止加载
+                if (isEnding) return;
+                if (isProcessingTransition) return;
+                if (index >= QUESTIONS.length) {
+                    showTransitionSequence(TRANSITIONS.afterQ8, function () {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        evaluateEnding();
+                    });
+                    return;
+                }
+
+                clearTimers();
+                extraTimer.textContent = '';
+                transitionLine.textContent = '';
+                transitionLine.className = 'transition-line';
+
+                const q = QUESTIONS[index];
+                currentIndex = index;
+
+                // 重置选项可见性
+                optionItemA.className = 'option-item';
+                optionItemB.className = 'option-item';
+                optionItemC.className = 'option-item hidden-option';
+
+                // 更新选项文本 + 重新绑定事件
+                // 每次从 DOM 重新获取当前按钮节点（旧常量引用在 replaceChild 后已脱离 DOM，直接使用会抛异常导致后续内容不加载）
+                const curA = document.getElementById('optionA');
+                const curB = document.getElementById('optionB');
+                const curC = document.getElementById('optionC');
+
+                const newA = curA.cloneNode(true);
+                const newB = curB.cloneNode(true);
+                const newC = curC.cloneNode(true);
+
+                newA.textContent = q.options[0] || '';
+                newB.textContent = q.options[1] || '';
+                newC.textContent = q.options[2] || '';
+
+                curA.parentNode.replaceChild(newA, curA);
+                curB.parentNode.replaceChild(newB, curB);
+                curC.parentNode.replaceChild(newC, curC);
+
+                const btnA = document.getElementById('optionA');
+                const btnB = document.getElementById('optionB');
+                const btnC = document.getElementById('optionC');
+
+                btnA.addEventListener('click', function handlerA() { handleOption(0, index); });
+                btnB.addEventListener('click', function handlerB() { handleOption(1, index); });
+                if (btnC) {
+                    btnC.addEventListener('click', function handlerC() { handleOption(2, index); });
+                }
+
+                // 处理Q3延迟选项（delayOption 秒后显示第三个选项，期间不显示倒计时文本）
+                if (q.id === 'Q3' && q.delayOption !== undefined) {
+                    optionItemC.className = 'option-item hidden-option';
+                    extraTimer.textContent = '';
+
+                    let countdown = q.delayOption;
+                    delayOptionTimer = setInterval(function () {
+                        countdown--;
+                        if (countdown <= 0) {
+                            clearInterval(delayOptionTimer);
+                            delayOptionTimer = null;
+                            extraTimer.textContent = '';
+                            optionItemC.className = 'option-item visible-option';
+                            document.getElementById('optionC').disabled = false;
+                        }
+                    }, 1000);
+                } else {
+                    extraTimer.textContent = '';
+                    if (q.options.length > 2) {
+                        optionItemC.className = 'option-item visible-option';
+                    }
+                }
+
+                // 如果是 Q5-1 但未满足条件，则跳到 Q6（安全兜底）
+                if (q.id === 'Q5-1' && !q5ChoseRemember) {
+                    loadQuestion(6);
+                    return;
+                }
+
+                // 打字显示问题
+                const afterTyping = function () {
+                    if (isEnding) return;
+                    showOptions(true);
+                };
+
+                typeQuestion(q.question, afterTyping);
+            }
+
+            // ---------- 处理选项 ----------
+            function handleOption(selectedIdx, qIndex) {
+                if (isEnding) return;
+                if (isProcessingTransition) return;
+                if (qIndex !== currentIndex) return;
+
+                const q = QUESTIONS[qIndex];
+                const flag = q.flags[selectedIdx];
+                if (flag === undefined) return;
+
+                // 更新计数
+                if (flag === 'T') tCount++;
+                else if (flag === 'F') fCount++;
+                else if (flag === 'R') rCount++;
+
+                // 隐藏选项防止重复点击
+                optionsArea.classList.remove('visible');
+
+                // 清除任何延迟选项计时器
+                if (delayOptionTimer) {
+                    clearInterval(delayOptionTimer);
+                    delayOptionTimer = null;
+                    extraTimer.textContent = '';
+                }
+
+                // ---------- 特殊分支：Q5 ----------
+                if (q.id === 'Q5') {
+                    if (selectedIdx === 1) {
+                        // 选择了“记得”
+                        q5ChoseRemember = true;
+                        setTimeout(function () {
+                            if (isEnding) return;
+                            loadQuestion(5); // 加载 Q5-1
+                        }, 400);
+                        return;
+                    } else {
+                        // 选择了“谁？”
+                        q5ChoseRemember = false;
+                        showTransitionSequence(TRANSITIONS.afterQ5_1, function () {
+                            if (isEnding) return;
+                            transitionLine.textContent = '';
+                            setTimeout(function () {
+                                if (isEnding) return;
+                                loadQuestion(6);
+                            }, 300);
+                        });
+                        return;
+                    }
+                }
+
+                // ---------- 特殊分支：Q5-1 ----------
+                if (q.id === 'Q5-1') {
+                    q5ChoseRemember = false;
+                    showTransitionSequence(TRANSITIONS.afterQ5_1, function () {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        setTimeout(function () {
+                            if (isEnding) return;
+                            loadQuestion(6);
+                        }, 300);
+                    });
+                    return;
+                }
+
+                // ---------- 常规流程 ----------
+                const nextIndex = qIndex + 1;
+                let transitionSeq = null;
+
+                if (q.id === 'Q1') {
+                    transitionSeq = TRANSITIONS.afterQ1;
+                }
+
+                if (transitionSeq) {
+                    showTransitionSequence(transitionSeq, function () {
+                        if (isEnding) return;
+                        transitionLine.textContent = '';
+                        // 加载下一个问题（Q2）
+                        setTimeout(function () {
+                            if (isEnding) return;
+                            if (nextIndex < QUESTIONS.length) {
+                                loadQuestion(nextIndex);
+                            } else {
+                                loadQuestion(QUESTIONS.length);
+                            }
+                        }, 300);
+                    });
+                } else {
+                    // 无过渡句，直接进入下一题
+                    setTimeout(function () {
+                        if (isEnding) return;
+                        if (nextIndex < QUESTIONS.length) {
+                            loadQuestion(nextIndex);
+                        } else {
+                            loadQuestion(QUESTIONS.length);
+                        }
+                    }, 400);
+                }
+            }
+
+            // ---------- 初始化 ----------
+            function init() {
+                if (checkStoredEnd()) return;
+
+                currentIndex = 0;
+                tCount = 0;
+                fCount = 0;
+                rCount = 0;
+                isEnding = false;
+                q5ChoseRemember = false;
+                isProcessingTransition = false;
+                clearTimers();
+
+                body.className = '';
+                body.style.backgroundColor = '#000';
+                questionText.className = 'question-text';
+                transitionLine.textContent = '';
+                transitionLine.className = 'transition-line';
+                extraTimer.textContent = '';
+                showOptions(false);
+                container.classList.remove('no-interaction');
+                optionsArea.classList.remove('hidden');
+
+                optionItemA.className = 'option-item';
+                optionItemB.className = 'option-item';
+                optionItemC.className = 'option-item hidden-option';
+
+                loadQuestion(0);
+            }
+
+            window.addEventListener('load', init);
+        })();
+    </script>
+</body>
+
+</html>
