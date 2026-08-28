@@ -19,7 +19,7 @@ features:
   - icon: 📖
     title: 探索世界
     details: 为了明日。
-    link: ../docs/novel/f/1
+    link: ../docs/novel/f/0
     linkText: 开始探索
   - icon: 📖
     title: 支线章节
