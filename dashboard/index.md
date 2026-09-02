@@ -11,6 +11,9 @@ hero:
     - theme: alt
       text: 项目搜索
       link: https://yuyudifiesh.github.io/corli/ark.htm
+    - theme: alt
+      text: C.S.R.
+      link: ../docs/novel/clubs/index
 
 features:
   - icon: 📖
