@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>向前 · 回望逝去的昨天</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #000000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Noto Serif SC', 'Source Han Serif CN', 'Songti SC', serif;
+            font-weight: 400;
+            padding: 2rem;
+            margin: 0;
+        }
+        .container {
+            max-width: 760px;
+            width: 100%;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;   /* 默认左对齐 */
+            padding: 1.5rem;
+        }
+        #main-text {
+            color: #e8e6e3;
+            font-size: clamp(1.2rem, 4.5vw, 2rem);
+            line-height: 1.9;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.08);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            word-break: break-word;
+            white-space: pre-wrap;
+            min-height: 3em;
+            width: 100%;            /* 确保居中生效 */
+            text-align: left;       /* 默认左对齐 */
+        }
+        #main-text.visible {
+            opacity: 1;
+        }
+        #main-text.fade-out {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        /* 居中样式（仅用于最后一行） */
+        #main-text.center-text {
+            text-align: center;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.5rem;
+            }
+            #main-text {
+                font-size: 1.1rem;
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="main-text"></div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- 数据 ----------
+            const fullLines = [
+                "我看见光线从裂缝里斜斜切下来，像一把钝刀，把灰尘切成明暗两半。",
+                "我看见课本还摊开着，铅笔盒滚在墙角，铁皮凹进去一块，映出我半张沾满白灰的脸。",
+                "我听见头顶有脚步声，很轻。",
+                "我听见有人在喊一个名字，喊了七遍，后来变成呜咽，再后来只剩下风吹过钢筋的哨音。",
+                "......",
+                "你把我从横梁和课桌组成的三角空间里拖出来时，我看见你的手指全是血。",
+                "我看见你跪在废墟上，用双手刨砖块，刨到第三块时突然停下来，砖底下压着一只红发卡，还粘着半片头绳。",
+                "我听见你说“别怕”，声音很轻。",
+                "我看见黄昏把影子拉得很长，长到能跨过整片废墟，长到能盖住时间。",
+                "我听见远处传来铁锹碰石头的声响。",
+                "我看见操场上支起白布，有人用签字笔在上面写名字。",
+                "我听见深夜有人唱童谣，所有人都跟着哼下去，哼着哼着就有人哭出声。",
+                "我看见红旗重新升起来的时候，旗杆上有道很深的划痕，像一道还没结痂的疤，但风一吹，旗子就把它遮住了。",
+                "我看见新栽的梧桐发了芽，像新的生命。",
+                "我看见远处山上又有了炊烟，从新修的瓦房顶上长出来，一直长到云里面去。",
+                "我听见火车汽笛从山那边传过来，一声长，一声短，像是大地在练习呼吸。",
+                "我看见夜里有很多灯，暖黄色的光，一家挨着一家。",
+                "我听见有人在教我记日子，说从今天起，每过一天就在墙上画一道，画够三百六十五道，我们就去种一片花。",
+                "我看见花开的时候，有蝴蝶落在旧裂缝上，翅膀一开一合，开的时候是今天，合的时候是昨天，再开的时候......",
+                "......",
+                "我听见你说，那是明天。"
+            ];
+
+            const epilogueTexts = [
+                "仅以此页面纪念在 5 · 12 中逝去的同胞",
+                "【获得词条：希望的明天】",
+                "0512"
+            ];
+
+            const mainTextEl = document.getElementById('main-text');
+            let timerId = null;
+            let isRunning = false;
+
+            function clearTimers() {
+                if (timerId) {
+                    clearTimeout(timerId);
+                    timerId = null;
+                }
+            }
+
+            function resetAndStart() {
+                clearTimers();
+                mainTextEl.textContent = '';
+                mainTextEl.classList.remove('visible', 'fade-out', 'center-text');
+                isRunning = true;
+
+                let lineIndex = 0;
+
+                // 正文逐字打字
+                function typeLine(lineText, callback) {
+                    mainTextEl.textContent = '';
+                    mainTextEl.classList.remove('fade-out', 'center-text');
+                    mainTextEl.classList.add('visible');
+                    let charPos = 0;
+                    const interval = 70;
+
+                    function typeChar() {
+                        if (!isRunning) return;
+                        if (charPos < lineText.length) {
+                            mainTextEl.textContent = lineText.substring(0, charPos + 1);
+                            charPos++;
+                            timerId = setTimeout(typeChar, interval);
+                        } else {
+                            timerId = setTimeout(() => {
+                                callback();
+                            }, 5000);
+                        }
+                    }
+                    typeChar();
+                }
+
+                // 显示结尾一行（直接显示全部，等待秒数后淡出）
+                function showEpilogueLine(text, duration, fadeOutCallback, isLast = false) {
+                    mainTextEl.textContent = text;
+                    mainTextEl.classList.remove('fade-out');
+                    // 如果是最后一行（0512），添加居中类
+                    if (isLast) {
+                        mainTextEl.classList.add('center-text');
+                    } else {
+                        mainTextEl.classList.remove('center-text');
+                    }
+                    mainTextEl.classList.add('visible');
+                    timerId = setTimeout(() => {
+                        mainTextEl.classList.remove('visible');
+                        mainTextEl.classList.add('fade-out');
+                        timerId = setTimeout(() => {
+                            fadeOutCallback();
+                        }, 600);
+                    }, duration * 1000);
+                }
+
+                // 开始正文循环
+                function nextBodyLine() {
+                    if (lineIndex < fullLines.length) {
+                        const line = fullLines[lineIndex];
+                        typeLine(line, () => {
+                            mainTextEl.classList.remove('visible');
+                            mainTextEl.classList.add('fade-out');
+                            timerId = setTimeout(() => {
+                                lineIndex++;
+                                nextBodyLine();
+                            }, 600);
+                        });
+                    } else {
+                        // 正文结束，等待6秒后进入结尾
+                        timerId = setTimeout(() => {
+                            startEpilogue();
+                        }, 6000);
+                    }
+                }
+
+                // 开始结尾序列
+                function startEpilogue() {
+                    mainTextEl.classList.remove('visible');
+                    mainTextEl.classList.add('fade-out');
+                    mainTextEl.textContent = '';
+
+                    // 第一句
+                    showEpilogueLine(epilogueTexts[0], 5, () => {
+                        // 第二句
+                        showEpilogueLine(epilogueTexts[1], 5, () => {
+                            // 第三句（永久显示，居中）
+                            mainTextEl.textContent = epilogueTexts[2];
+                            mainTextEl.classList.remove('fade-out');
+                            mainTextEl.classList.add('visible', 'center-text');
+                            // 永久保留，任务结束
+                            isRunning = false;
+                        });
+                    });
+                }
+
+                nextBodyLine();
+            }
+
+            function init() {
+                clearTimers();
+                isRunning = false;
+                mainTextEl.textContent = '';
+                mainTextEl.classList.remove('visible', 'fade-out', 'center-text');
+                resetAndStart();
+            }
+
+            window.addEventListener('load', init);
+            window.addEventListener('pageshow', function(e) {
+                if (e.persisted) init();
+            });
+            window.addEventListener('beforeunload', function() {
+                clearTimers();
+                isRunning = false;
+            });
+
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                if (!window._initialized) {
+                    window._initialized = true;
+                    init();
+                }
+            } else {
+                document.addEventListener('DOMContentLoaded', function() {
+                    if (!window._initialized) {
+                        window._initialized = true;
+                        init();
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
