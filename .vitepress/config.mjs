@@ -10,7 +10,8 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '关于', link: '/about' },
-      { text: '设定', link: '/docs/setting/set' }
+      { text: '设定', link: '/docs/setting/set' },
+      { text: 'WIKI', link: '/wiki/index' }
     ],
 
     // 汉化
